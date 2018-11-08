@@ -1,0 +1,3 @@
+pl\put\poznan\building_info\rest\BuildingInfoController.class
+pl\put\poznan\building_info\logic\BuildingOperations.class
+pl\put\poznan\building_info\app\BuildingInfoApplication.class

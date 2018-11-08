@@ -1,13 +1,14 @@
-package pl.put.poznan.transformer.logic;
+package pl.put.poznan.building_info.logic;
 
 /**
  * This is just an example to show that the logic should be outside the REST service.
  */
-public class TextTransformer {
+
+public class BuildingOperations{
 
     private final String[] transforms;
 
-    public TextTransformer(String[] transforms){
+    public BuildingOperations(String[] transforms){
         this.transforms = transforms;
     }
 

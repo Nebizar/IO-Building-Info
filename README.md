@@ -4,7 +4,6 @@ IO project - Building Info App
 Do kompilowania polecam pobrać mavena, wejść w główny folder projektu i odpaić przez "mvn spring-boot:run"
 
 Jeżeli wszystko się uda to po wpisaniu w przeglądarce "http://localhost:8080/abc" powinno się wam wyświetlić "abc"
-    - reszta funkcjonalności dostępna tylko przez JSON-a
 
 Do wysyłania zapytań JSON polecam POSTMAN-a (taka mała apka)
  - na http://localhost:8080/ wysyłacie zapytanie POST z JSON-ową treścią ... 

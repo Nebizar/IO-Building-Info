@@ -1,12 +1,12 @@
 pl\put\poznan\building_info\logic\BuildingOperations.class
-pl\put\poznan\building_info\logic\BuildingOperations$1.class
+pl\put\poznan\building_info\structures\Collection.class
 pl\put\poznan\building_info\info\Result.class
 pl\put\poznan\building_info\app\BuildingInfoApplication.class
+pl\put\poznan\building_info\rest\BuildingInfoController$3.class
 pl\put\poznan\building_info\structures\Level.class
-pl\put\poznan\building_info\logic\BuildingOperations$3.class
+pl\put\poznan\building_info\rest\BuildingInfoController$2.class
 pl\put\poznan\building_info\structures\Location.class
 pl\put\poznan\building_info\structures\Building.class
 pl\put\poznan\building_info\rest\BuildingInfoController.class
 pl\put\poznan\building_info\rest\BuildingInfoController$1.class
 pl\put\poznan\building_info\structures\Room.class
-pl\put\poznan\building_info\logic\BuildingOperations$2.class

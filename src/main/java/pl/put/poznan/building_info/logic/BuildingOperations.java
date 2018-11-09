@@ -5,11 +5,13 @@ import pl.put.poznan.building_info.structures.Location;
 import pl.put.poznan.building_info.structures.Room;
 import pl.put.poznan.building_info.structures.Building;
 import pl.put.poznan.building_info.structures.Level;
+import pl.put.poznan.building_info.structures.Collection;
 import pl.put.poznan.building_info.info.Result;
 import java.util.Random;
 
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
+
 
 /**
  * BuildingOperations class contains data of all elements and performs basic operations on them
@@ -18,8 +20,6 @@ import java.lang.reflect.Type;
 public class BuildingOperations{
 
     private ArrayList<Building> buildings = new ArrayList<Building>();
-
-    private Type lastFoundType = null;
 
     /**
      * Each location has own unique ID, 
@@ -89,42 +89,78 @@ public class BuildingOperations{
     }
 
     /**
-     * Find location specified by ID
-     * Store type of found location
-     * @param ID
-     * @return found location element or null if location not found
+     * Find locations specified by IDs
+     * @param IDs
+     * @return Collection of elements of specified IDs
      */
-    public Location getLocationByID(int ID){
-        if(ID >= currentID){
-            return null;
-        }
+    public Collection getLocationsByIDs(ArrayList<Integer> IDs){
+        Collection found = new Collection();
 
         for (Building building : buildings){
-            if(building.getID() == ID){
-                lastFoundType = new TypeToken<Building>() {}.getType();
-                return building;
+            if(contains(IDs, building.getID())){
+                found.insertBuilding(building);
             }
 
             for (Level level : building.getLevels()) {
-                if(level.getID() == ID){
-                    lastFoundType = new TypeToken<Level>() {}.getType();
-                    return level;
+                if(contains(IDs, level.getID())){
+                    found.insertLevel(level);
                 }
     
                 for (Room room : level.getRooms()) {
-                    if(room.getID() == ID){
-                        lastFoundType = new TypeToken<Room>() {}.getType();
-                        return room;
+                    if(contains(IDs, room.getID())){
+                        found.insertRoom(room);
                     }
                 }
             }
         }
         
 
-        return null;
+        return found;
     }
 
-    public Type getLastFoundType(){
-        return lastFoundType;
+    /**
+     * Check if the value is in the array
+     * @param array
+     * @param val
+     * @return
+     */
+    public boolean contains(ArrayList<Integer> array, int val){
+
+        for(int k: array){
+            if(k == val){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public ArrayList<Integer> getElementsIDs(Collection cl){
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for(Location location: cl.getBuildings()){
+            result.add(location.getID());
+        }
+        for(Location location: cl.getLevels()){
+            result.add(location.getID());
+        }
+        for(Location location: cl.getRooms()){
+            result.add(location.getID());
+        }
+
+        return result;
+    }
+
+
+
+
+    /*************          TODO          *************/
+    /** 
+     * Przykład funkcji przyjmującej kolekcje obiektóe
+     * Powinna zwrócić łączną powierzchnię dla każdego obiektu w kolekcji
+     * Nie wiem do końca w jaką klasę zamknąć wynik bo trzeba to zwrócić jako JSON
+    */
+    public Collection getTotalArea(Collection collection){
+
+        return collection;
     }
 }

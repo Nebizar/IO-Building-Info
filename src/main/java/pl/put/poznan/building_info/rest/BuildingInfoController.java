@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
 import pl.put.poznan.building_info.structures.Location;
 import pl.put.poznan.building_info.structures.Building;
 import pl.put.poznan.building_info.info.Result;
+import pl.put.poznan.building_info.structures.Collection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,14 +54,12 @@ public class BuildingInfoController {
                 int i = Integer.parseInt(locationId);
             
                 Gson g = new Gson();
-                
+                ArrayList<Integer> iArr = new ArrayList<Integer>();
+                iArr.add(i);
 
-                /**
-                 * Type of location is stored in Building operatrions class as last found type
-                 * Using stored type allows to show all location informations
-                 */
-                Location location = transformer.getLocationByID(i);
-                String json = g.toJson(location, transformer.getLastFoundType());
+                Collection location = transformer.getLocationsByIDs(iArr);
+                Type type = new TypeToken<Collection>() {}.getType();
+                String json = g.toJson(location, type);
                 g = null;
 
                 return json;
@@ -78,6 +77,30 @@ public class BuildingInfoController {
             g = null;
             return json;
         }
+    }
+
+
+    /*************          TODO          *************/
+
+    /** Przykład procedury przyjmującej obiekty w formacie JSON (obiekty mogą mieś tylko przydzielone ID)
+     * Funkcja powinna zwrócić w formacie JSONA informacje o powierzni każdego elementu, nie wszystkich razem a każdego z osobna)
+     * Nie jestem pewny czy funkcja do końca działa - tylko taki przykład 
+     * Na bazie tego możecie budować kolejne "Buisness value"
+     */
+    @RequestMapping(value = "/totalArea/", method = RequestMethod.POST, produces = "application/json")
+    public String totalArea(@RequestBody String col) {
+
+        Gson g = new Gson(); 
+        Collection elements = g.fromJson(col, Collection.class);
+        ArrayList<Integer> IDs = transformer.getElementsIDs(elements);
+        elements = transformer.getLocationsByIDs(IDs);
+
+        Collection result = transformer.getTotalArea(elements);
+        Type type = new TypeToken<Collection>() {}.getType();
+        String json = g.toJson(result, type);
+
+        g = null;
+        return json;
     }
 
 }

@@ -6,6 +6,7 @@ import pl.put.poznan.building_info.structures.Room;
 import pl.put.poznan.building_info.structures.Building;
 import pl.put.poznan.building_info.structures.Level;
 import pl.put.poznan.building_info.structures.Collection;
+import pl.put.poznan.building_info.structures.Value;
 import pl.put.poznan.building_info.info.Result;
 import java.util.Random;
 
@@ -162,5 +163,23 @@ public class BuildingOperations{
     public Collection getTotalArea(Collection collection){
 
         return collection;
+    }
+    
+    /** 
+     * Calculate the total cube of a building with an id passed as a parameter
+     * @param id 
+     * @retrun value- class containing information about building cube
+    */
+    public Value getBuildingCube(Integer id){
+    	float cube=0;
+    	Building building=buildings.get(id);
+        for (Level level : building.getLevels()) {
+    
+             for (Room room : level.getRooms()) {
+            	 cube+=room.getCube();
+             }
+        }
+        Value value=new Value("BuildingCube",id,cube);
+        return value;
     }
 }

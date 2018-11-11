@@ -14,4 +14,8 @@ public class Room extends Location{
         this.heating = heating;
         this.lightPower = lightPower;
     }
+    
+    public float getCube() {
+    	return cube;
+    }
 }

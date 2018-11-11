@@ -13,6 +13,7 @@ import pl.put.poznan.building_info.structures.Location;
 import pl.put.poznan.building_info.structures.Building;
 import pl.put.poznan.building_info.info.Result;
 import pl.put.poznan.building_info.structures.Collection;
+import pl.put.poznan.building_info.structures.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,4 +104,31 @@ public class BuildingInfoController {
         return json;
     }
 
+    /** 
+     * Calculates and shows the cube of a building
+     * @param id- building's id
+     * @return the cube of a building in json format
+     */
+    @RequestMapping(value = "/buildingCube", method = RequestMethod.GET, produces = "application/json")
+    public String totalCube(@RequestParam(value = "id", required = true) String buildingId) {
+
+        try
+            {
+                int i = Integer.parseInt(buildingId);
+            
+                Gson g = new Gson();
+
+                Value cube = transformer.getBuildingCube(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(cube, type);
+                g = null;
+
+                return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
 }

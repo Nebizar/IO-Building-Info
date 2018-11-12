@@ -187,4 +187,88 @@ public class BuildingInfoController {
                 return result.getAsJsonString();
             }
     }
+    
+    /** 
+     * Calculates and shows the power per square meter of a room
+     * @param id- room's id
+     * @return power per square of a room in json format
+     */
+    @RequestMapping(value = "/roomPowerPerSquare", method = RequestMethod.GET, produces = "application/json")
+    public String roomPowerPerSquare(@RequestParam(value = "id", required = true) String roomId) {
+
+        try
+            {
+                int i = Integer.parseInt(roomId);
+            
+                Gson g = new Gson();
+
+                Value power = transformer.getRoomPowerPerSquare(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(power, type);
+                g = null;
+
+                return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
+    
+    /** 
+     * Calculates and shows the average power per square meter of a level
+     * @param id- level's id
+     * @return average power per square of a level in json format
+     */
+    @RequestMapping(value = "/levelPowerPerSquare", method = RequestMethod.GET, produces = "application/json")
+    public String levelPowerPerSquare(@RequestParam(value = "id", required = true) String levelId) {
+
+        try
+            {
+                int i = Integer.parseInt(levelId);
+            
+                Gson g = new Gson();
+
+                Value power = transformer.getLevelPowerPerSquare(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(power, type);
+                g = null;
+
+                return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
+    
+    /** 
+     * Calculates and shows the average power per square meter of a building
+     * @param id- level's id
+     * @return average power per square of a building in json format
+     */
+    @RequestMapping(value = "/buildingPowerPerSquare", method = RequestMethod.GET, produces = "application/json")
+    public String buildingPowerPerSquare(@RequestParam(value = "id", required = true) String buildingId) {
+
+        try
+            {
+                int i = Integer.parseInt(buildingId);
+            
+                Gson g = new Gson();
+
+                Value power = transformer.getBuildingPowerPerSquare(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(power, type);
+                g = null;
+
+                return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
 }

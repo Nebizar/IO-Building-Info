@@ -276,4 +276,88 @@ public class BuildingOperations{
         Value value=new Value("RoomCube",id,cube);
         return value;
     }
+    
+    /** 
+     * Calculate the power per square meter of a room with an id passed as a parameter
+     * @param id 
+     * @retrun value- class containing information about room power per square
+    */
+    public Value getRoomPowerPerSquare(Integer id){
+    	float powerPerSquare=0;
+    	
+    	Room room=findRoomByID(id);
+    	if(room.getID()==-1){
+    		Value value=new Value("ERROR! That is not a room ID!",id,-1);
+    		return value;
+    	}
+    	
+        powerPerSquare=room.getLightPower()/room.getArea();
+        Value value=new Value("RoomPowerPerSquare",id,powerPerSquare);
+        return value;
+    }
+    
+    /** 
+     * Calculate the average power per square meter of a level with an id passed as a parameter
+     * @param id 
+     * @retrun value- class containing information about level's average power per square
+    */
+    public Value getLevelPowerPerSquare(Integer id){
+    	float powerPerSquare=0;
+    	float power=0;
+    	int count=0;
+    	float val=0;
+    	
+    	Level level=findLevelByID(id);
+    	if(level.getID()==-1){
+    		Value value=new Value("ERROR! That is not a level ID!",id,-1);
+    		return value;
+    	}
+    	
+        for (Room room : level.getRooms()) {
+        	val=room.getLightPower()/room.getArea();
+        	power+=val;
+        	count++;
+        }
+        
+        powerPerSquare=power/count;
+        Value value=new Value("LevelPowerPerSquare",id,powerPerSquare);
+        return value;
+    }
+    
+    /** 
+     * Calculate the average power per square meter of a building with an id passed as a parameter
+     * @param id 
+     * @retrun value- class containing information about buildings's average power per square
+    */
+    public Value getBuildingPowerPerSquare(Integer id){
+    	float powerPerSquare=0;
+    	float power=0;
+    	int count=0;
+    	int levelCount=0;
+    	float val=0;
+    	float powerPerLevel=0;
+    	
+    	Building building=findBuildingByID(id);
+    	if(building.getID()==-1){
+    		Value value=new Value("ERROR! That is not a building ID!",id,-1);
+    		return value;
+    	}
+    	
+        for (Level level : building.getLevels()) {
+    
+             for (Room room : level.getRooms()) {
+             	val=room.getLightPower()/room.getArea();
+            	power+=val;
+            	count++;
+             }
+             powerPerLevel=power/count;
+             levelCount++;
+             power=0;
+             count=0;
+        }
+        
+        powerPerSquare=powerPerLevel/levelCount;
+        Value value=new Value("BuildingPowerPerSquare",id,powerPerSquare);
+        return value;
+    }
 }

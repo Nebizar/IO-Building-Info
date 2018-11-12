@@ -23,4 +23,12 @@ public class Room extends Location{
     public float getCube() {
     	return cube;
     }
+    
+    public float getArea() {
+    	return area;
+    }
+    
+    public float getLightPower() {
+    	return lightPower;
+    }
 }

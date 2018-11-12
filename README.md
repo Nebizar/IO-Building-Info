@@ -36,3 +36,7 @@ KOMUNIKAT DODANY:
  http://localhost:8080/buildingCube?id=0		Wyświetla kubaturę budynku o id podnaym jako parametr (jeżeli id nie będzie należało do budynku wyświetli się error)
  http://localhost:8080/levelCube?id=1			Wyświetla kubaturę poziomu o id podnaym jako parametr (jeżeli id nie będzie należało do budynku wyświetli się error)
  http://localhost:8080/roomCube?id=5			Wyświetla kubaturę pokoju o id podnaym jako parametr (jeżeli id nie będzie należało do budynku wyświetli się error)
+
+http://localhost:8080/buildingPowerPerSquare?id=0		Wyświetla średnie zużycie energii na oświetlenie na metr kwadratowy w budynku o id podnaym jako parametr (jeżeli id nie będzie należało do budynku wyświetli się error)
+ http://localhost:8080/levelPowerPerSquare?id=1			Wyświetla średnie zużycie energii na oświetlenie na metr kwadratowy na poziomie o id podnaym jako parametr (jeżeli id nie będzie należało do budynku wyświetli się error)
+ http://localhost:8080/roomPowerPerSquare?id=5			Wyświetla średnie zużycie energii na oświetlenie na metr kwadratowy w pokoju o id podnaym jako parametr (jeżeli id nie będzie należało do budynku wyświetli się error)

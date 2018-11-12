@@ -83,10 +83,10 @@ public class BuildingInfoController {
 
     /*************          TODO          *************/
 
-    /** Przykład procedury przyjmującej obiekty w formacie JSON (obiekty mogą mieś tylko przydzielone ID)
-     * Funkcja powinna zwrócić w formacie JSONA informacje o powierzni każdego elementu, nie wszystkich razem a każdego z osobna)
-     * Nie jestem pewny czy funkcja do końca działa - tylko taki przykład 
-     * Na bazie tego możecie budować kolejne "Buisness value"
+    /** PrzykĹ‚ad procedury przyjmujÄ…cej obiekty w formacie JSON (obiekty mogÄ… mieĹ› tylko przydzielone ID)
+     * Funkcja powinna zwrĂłciÄ‡ w formacie JSONA informacje o powierzni kaĹĽdego elementu, nie wszystkich razem a kaĹĽdego z osobna)
+     * Nie jestem pewny czy funkcja do koĹ„ca dziaĹ‚a - tylko taki przykĹ‚ad 
+     * Na bazie tego moĹĽecie budowaÄ‡ kolejne "Buisness value"
      */
     /** 
      * Calculates and shows the area of a room
@@ -324,6 +324,81 @@ public class BuildingInfoController {
                 g = null;
 
                 return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
+    
+    /** 
+     * Calculates and shows the avarage heating per cube of a room
+     * @param id- room's id
+     * @return avarage heating per cube of a room in json format
+     */
+    @RequestMapping(value = "/roomHeatingPerCube", method = RequestMethod.GET, produces = "application/json")
+    public String roomHeatingPerCube(@RequestParam(value = "id", required = true) String roomId) {
+         try
+            {
+                int i = Integer.parseInt(roomId);
+            
+                Gson g = new Gson();
+                 Value power = transformer.getRoomHeatPerCube(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(power, type);
+                g = null;
+                 return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
+    
+    /** 
+     * Calculates and shows the avarage heating per cube of a level
+     * @param id- level's id
+     * @return avarage heating per cube of a level in json format
+     */
+    @RequestMapping(value = "/levelHeatingPerCube", method = RequestMethod.GET, produces = "application/json")
+    public String levelHeatingPerCube(@RequestParam(value = "id", required = true) String levelId) {
+         try
+            {
+                int i = Integer.parseInt(levelId);
+            
+                Gson g = new Gson();
+                 Value power = transformer.getLevelHeatPerCube(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(power, type);
+                g = null;
+                 return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
+    
+    /** 
+     * Calculates and shows the avarage heating per cube of a building
+     * @param id- level's id
+     * @return avarage heating per cube of a building in json format
+     */
+    @RequestMapping(value = "/buildingHeatingPerCube", method = RequestMethod.GET, produces = "application/json")
+    public String buildingHeatingPerCube(@RequestParam(value = "id", required = true) String buildingId) {
+         try
+            {
+                int i = Integer.parseInt(buildingId);
+            
+                Gson g = new Gson();
+                 Value power = transformer.getBuildingHeatPerCube(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(power, type);
+                g = null;
+                 return json;
             }
             catch (NumberFormatException e)
             {

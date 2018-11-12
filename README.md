@@ -21,7 +21,7 @@ http://localhost:8080/building/new/                 Dodaje nowy budynek zgodnie 
   + Struktura budynku w JSON
   np {"levels":[{"rooms":[{"area":16.771454,"cube":86.15964,"heating":193.71202,"lightPower":172.36221,"ID":35,"name":"Room"},{"area":35.63685,"cube":44.08831,"heating":74.20811,"lightPower":297.57465,"ID":36,"name":"Room"}],"ID":30,"name":"Level"}],"name":"Building"}
 
-//Uwagi Mikołaja:
+Uwagi Mikołaja:
 Do JSON można przesyłać tylko klasy stworzone przez użytkownika więc dodałem nową klasę Value, w której są trzy pola:
  - type- czego w tym wypadku dotyczy klasa (np. kubatura budynku, powierzchnia poziomu itp.)
  - id- id elementu, którego dotyczy wartość
@@ -29,3 +29,6 @@ Do JSON można przesyłać tylko klasy stworzone przez użytkownika więc dodał
 Polecam postarać się w miarę możliwości korzystać z tej klasy, żeby niepotrzebnie nie dodawać niewiadomo ilu.
 
 Polecam też używać tego co zrobiłem jako template'a, jako że wszystkie te zadania są dosyć podobne powinno dzięki temu pójść dużo szybciej.
+
+KOMUNIKAT DODANY:
+ http://localhost:8080/buildingCube/id?0	Wyświetla kubaturę budynku o id podnaym jako parametr (jeżeli id nie będzie należało do budynku wyświetli się error)

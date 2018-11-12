@@ -110,7 +110,7 @@ public class BuildingInfoController {
      * @return the cube of a building in json format
      */
     @RequestMapping(value = "/buildingCube", method = RequestMethod.GET, produces = "application/json")
-    public String totalCube(@RequestParam(value = "id", required = true) String buildingId) {
+    public String buildingCube(@RequestParam(value = "id", required = true) String buildingId) {
 
         try
             {
@@ -119,6 +119,62 @@ public class BuildingInfoController {
                 Gson g = new Gson();
 
                 Value cube = transformer.getBuildingCube(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(cube, type);
+                g = null;
+
+                return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
+    
+    /** 
+     * Calculates and shows the cube of a level
+     * @param id- level's id
+     * @return the cube of a level in json format
+     */
+    @RequestMapping(value = "/levelCube", method = RequestMethod.GET, produces = "application/json")
+    public String levelCube(@RequestParam(value = "id", required = true) String levelId) {
+
+        try
+            {
+                int i = Integer.parseInt(levelId);
+            
+                Gson g = new Gson();
+
+                Value cube = transformer.getLevelCube(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(cube, type);
+                g = null;
+
+                return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
+    
+    /** 
+     * Calculates and shows the cube of a room
+     * @param id- room's id
+     * @return the cube of a room in json format
+     */
+    @RequestMapping(value = "/roomCube", method = RequestMethod.GET, produces = "application/json")
+    public String roomCube(@RequestParam(value = "id", required = true) String roomId) {
+
+        try
+            {
+                int i = Integer.parseInt(roomId);
+            
+                Gson g = new Gson();
+
+                Value cube = transformer.getRoomCube(i);
                 Type type = new TypeToken<Value>() {}.getType();
                 String json = g.toJson(cube, type);
                 g = null;

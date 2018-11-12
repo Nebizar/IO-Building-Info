@@ -220,11 +220,13 @@ public class BuildingOperations{
     */
     public Value getBuildingCube(Integer id){
     	float cube=0;
+    	
     	Building building=findBuildingByID(id);
     	if(building.getID()==-1){
     		Value value=new Value("ERROR! That is not a building ID!",id,-1);
     		return value;
     	}
+    	
         for (Level level : building.getLevels()) {
     
              for (Room room : level.getRooms()) {
@@ -232,6 +234,46 @@ public class BuildingOperations{
              }
         }
         Value value=new Value("BuildingCube",id,cube);
+        return value;
+    }
+    
+    /** 
+     * Calculate the total cube of a level with an id passed as a parameter
+     * @param id 
+     * @retrun value- class containing information about level cube
+    */
+    public Value getLevelCube(Integer id){
+    	float cube=0;
+    	
+    	Level level=findLevelByID(id);
+    	if(level.getID()==-1){
+    		Value value=new Value("ERROR! That is not a level ID!",id,-1);
+    		return value;
+    	}
+    	
+        for (Room room : level.getRooms()) {
+        	cube+=room.getCube();
+        }
+        Value value=new Value("LevelCube",id,cube);
+        return value;
+    }
+    
+    /** 
+     * Calculate the total cube of a room with an id passed as a parameter
+     * @param id 
+     * @retrun value- class containing information about room cube
+    */
+    public Value getRoomCube(Integer id){
+    	float cube=0;
+    	
+    	Room room=findRoomByID(id);
+    	if(room.getID()==-1){
+    		Value value=new Value("ERROR! That is not a room ID!",id,-1);
+    		return value;
+    	}
+    	
+        cube=room.getCube();
+        Value value=new Value("RoomCube",id,cube);
         return value;
     }
 }

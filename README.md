@@ -34,3 +34,5 @@ Polecam też używać tego co zrobiłem jako template'a, jako że wszystkie te z
 KOMUNIKAT DODANY:
 
  http://localhost:8080/buildingCube?id=0		Wyświetla kubaturę budynku o id podnaym jako parametr (jeżeli id nie będzie należało do budynku wyświetli się error)
+ http://localhost:8080/levelCube?id=1			Wyświetla kubaturę poziomu o id podnaym jako parametr (jeżeli id nie będzie należało do budynku wyświetli się error)
+ http://localhost:8080/roomCube?id=5			Wyświetla kubaturę pokoju o id podnaym jako parametr (jeżeli id nie będzie należało do budynku wyświetli się error)

@@ -150,7 +150,21 @@ public class BuildingOperations{
 
         return result;
     }
-
+    
+    /**
+     *Find a building by id visible for user or a special error building
+     *@param id- id of the building to search for
+     *@return building with the id specified in the params 
+    */
+    private Building findBuildingByID(int id) {
+    	for(Building building: buildings) {
+    		if(building.getID()==id) {
+    			return building;
+    		}
+    	}
+    	Building error=new Building(-1,"Error");
+    	return error;
+    }
 
 
 
@@ -172,7 +186,11 @@ public class BuildingOperations{
     */
     public Value getBuildingCube(Integer id){
     	float cube=0;
-    	Building building=buildings.get(id);
+    	Building building=findBuildingByID(id);
+    	if(building.getID()==-1){
+    		Value value=new Value("ERROR! That is not a building ID!",id,-1);
+    		return value;
+    	}
         for (Level level : building.getLevels()) {
     
              for (Room room : level.getRooms()) {

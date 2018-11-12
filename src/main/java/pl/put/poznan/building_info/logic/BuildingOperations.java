@@ -49,7 +49,7 @@ public class BuildingOperations{
                 Level level = new Level(currentID, "Level");
                 currentID ++;
                 for(int i = 0; i < 6; i++){
-                    Room room = new Room(currentID, "Room", generator.nextFloat() * 50, generator.nextFloat() * 100, generator.nextFloat() * 200, generator.nextFloat() * 500);
+                    Room room = new Room(currentID, "Room", generator.nextFloat() * 10, generator.nextFloat() * 5, generator.nextFloat() * 2, generator.nextFloat() * 200, generator.nextFloat() * 500);
                     currentID ++;
                     level.addRoom(room);
                 }
@@ -198,7 +198,7 @@ public class BuildingOperations{
     			}
     		}
     	}
-    	Room error=new Room(-1,"Error",0,0,0,0);
+    	Room error=new Room(-1,"Error",0,0,0,0,0);
     	return error;
     }
 

@@ -166,7 +166,41 @@ public class BuildingOperations{
     	return error;
     }
 
-
+    /**
+     *Find a level by id visible for user or a special error level
+     *@param id- id of the level to search for
+     *@return level with the id specified in the params 
+    */
+    private Level findLevelByID(int id) {
+    	for(Building building: buildings) {
+    		for(Level level: building.getLevels()) {
+	    		if(level.getID()==id) {
+	    			return level;
+	    		}
+    		}
+    	}
+    	Level error=new Level(-1,"Error");
+    	return error;
+    }
+    
+    /**
+     *Find a room by id visible for user or a special error room
+     *@param id- id of the room to search for
+     *@return room with the id specified in the params 
+    */
+    private Room findRoomByID(int id) {
+    	for(Building building: buildings) {
+    		for(Level level: building.getLevels()) {
+    			for(Room room: level.getRooms()) {
+		    		if(room.getID()==id) {
+		    			return room;
+		    		}
+    			}
+    		}
+    	}
+    	Room error=new Room(-1,"Error",0,0,0,0);
+    	return error;
+    }
 
     /*************          TODO          *************/
     /** 

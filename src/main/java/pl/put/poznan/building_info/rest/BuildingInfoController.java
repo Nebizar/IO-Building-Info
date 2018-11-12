@@ -88,21 +88,81 @@ public class BuildingInfoController {
      * Nie jestem pewny czy funkcja do końca działa - tylko taki przykład 
      * Na bazie tego możecie budować kolejne "Buisness value"
      */
-    @RequestMapping(value = "/totalArea/", method = RequestMethod.POST, produces = "application/json")
-    public String totalArea(@RequestBody String col) {
-
-        Gson g = new Gson(); 
-        Collection elements = g.fromJson(col, Collection.class);
-        ArrayList<Integer> IDs = transformer.getElementsIDs(elements);
-        elements = transformer.getLocationsByIDs(IDs);
-
-        Collection result = transformer.getTotalArea(elements);
-        Type type = new TypeToken<Collection>() {}.getType();
-        String json = g.toJson(result, type);
-
-        g = null;
-        return json;
+    /** 
+     * Calculates and shows the area of a room
+     * @param id- room's id
+     * @return area of a room in json format
+     */
+    @RequestMapping(value = "/roomArea", method = RequestMethod.GET, produces = "application/json")
+    public String roomArea(@RequestParam(value = "id", required = true) String roomId) {
+         try
+            {
+                int i = Integer.parseInt(roomId);
+            
+                Gson g = new Gson();
+                 Value power = transformer.getRoomArea(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(power, type);
+                g = null;
+                 return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
     }
+    
+    /** 
+     * Calculates and shows the area of a level
+     * @param id- level's id
+     * @return area of a level in json format
+     */
+    @RequestMapping(value = "/levelArea", method = RequestMethod.GET, produces = "application/json")
+    public String levelArea(@RequestParam(value = "id", required = true) String levelId) {
+         try
+            {
+                int i = Integer.parseInt(levelId);
+            
+                Gson g = new Gson();
+                 Value power = transformer.getLevelArea(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(power, type);
+                g = null;
+                 return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
+    
+    /** 
+     * Calculates and shows the area of a building
+     * @param id- level's id
+     * @return area of a building in json format
+     */
+    @RequestMapping(value = "/buildingArea", method = RequestMethod.GET, produces = "application/json")
+    public String buildingArea(@RequestParam(value = "id", required = true) String buildingId) {
+         try
+            {
+                int i = Integer.parseInt(buildingId);
+            
+                Gson g = new Gson();
+                 Value power = transformer.getBuildingArea(i);
+                Type type = new TypeToken<Value>() {}.getType();
+                String json = g.toJson(power, type);
+                g = null;
+                 return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
+	
 
     /** 
      * Calculates and shows the cube of a building

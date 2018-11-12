@@ -208,15 +208,73 @@ public class BuildingOperations{
      * Powinna zwrócić łączną powierzchnię dla każdego obiektu w kolekcji
      * Nie wiem do końca w jaką klasę zamknąć wynik bo trzeba to zwrócić jako JSON
     */
-    public Collection getTotalArea(Collection collection){
-
-        return collection;
+    /** 
+     * Calculate the total area of a building with an id passed as a parameter
+     * @param id 
+     * @return value- class containing information about building area
+    */
+    public Value getBuildingArea(Integer id){
+    	float area=0;
+    	
+    	Building building=findBuildingByID(id);
+    	if(building.getID()==-1){
+    		Value value=new Value("ERROR! That is not a building ID!",id,-1);
+    		return value;
+    	}
+    	
+        for (Level level : building.getLevels()) {
+    
+             for (Room room : level.getRooms()) {
+            	 area += room.getArea();
+             }
+        }
+        Value value=new Value("BuildingArea",id,area);
+        return value;
+    }
+    
+    /** 
+     * Calculate the total area of a level with an id passed as a parameter
+     * @param id 
+     * @return value- class containing information about level area
+    */
+    public Value getLevelArea(Integer id){
+    	float area=0;
+    	
+    	Level level=findLevelByID(id);
+    	if(level.getID()==-1){
+    		Value value=new Value("ERROR! That is not a level ID!",id,-1);
+    		return value;
+    	}
+    	
+        for (Room room : level.getRooms()) {
+        	area+=room.getArea();
+        }
+        Value value=new Value("LevelArea",id,area);
+        return value;
+    }
+    
+    /** 
+     * Calculate the total cube of a room with an id passed as a parameter
+     * @param id 
+     * @return value- class containing information about room area
+    */
+    public Value getRoomArea(Integer id){
+    	Room room=findRoomByID(id);
+    	if(room.getID()==-1){
+    		Value value=new Value("ERROR! That is not a room ID!",id,-1);
+    		return value;
+    	}
+        else{
+            float area=room.getArea();
+            Value value=new Value("RoomArea",id,area);
+            return value;
+        }
     }
     
     /** 
      * Calculate the total cube of a building with an id passed as a parameter
      * @param id 
-     * @retrun value- class containing information about building cube
+     * @return value- class containing information about building cube
     */
     public Value getBuildingCube(Integer id){
     	float cube=0;
@@ -240,7 +298,7 @@ public class BuildingOperations{
     /** 
      * Calculate the total cube of a level with an id passed as a parameter
      * @param id 
-     * @retrun value- class containing information about level cube
+     * @return value- class containing information about level cube
     */
     public Value getLevelCube(Integer id){
     	float cube=0;
@@ -261,7 +319,7 @@ public class BuildingOperations{
     /** 
      * Calculate the total cube of a room with an id passed as a parameter
      * @param id 
-     * @retrun value- class containing information about room cube
+     * @return value- class containing information about room cube
     */
     public Value getRoomCube(Integer id){
     	float cube=0;
@@ -280,7 +338,7 @@ public class BuildingOperations{
     /** 
      * Calculate the power per square meter of a room with an id passed as a parameter
      * @param id 
-     * @retrun value- class containing information about room power per square
+     * @return value- class containing information about room power per square
     */
     public Value getRoomPowerPerSquare(Integer id){
     	float powerPerSquare=0;
@@ -299,7 +357,7 @@ public class BuildingOperations{
     /** 
      * Calculate the average power per square meter of a level with an id passed as a parameter
      * @param id 
-     * @retrun value- class containing information about level's average power per square
+     * @return value- class containing information about level's average power per square
     */
     public Value getLevelPowerPerSquare(Integer id){
     	float powerPerSquare=0;
@@ -327,7 +385,7 @@ public class BuildingOperations{
     /** 
      * Calculate the average power per square meter of a building with an id passed as a parameter
      * @param id 
-     * @retrun value- class containing information about buildings's average power per square
+     * @return value- class containing information about buildings's average power per square
     */
     public Value getBuildingPowerPerSquare(Integer id){
     	float powerPerSquare=0;

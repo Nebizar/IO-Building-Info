@@ -204,9 +204,9 @@ public class BuildingOperations{
 
     /*************          TODO          *************/
     /** 
-     * Przykład funkcji przyjmującej kolekcje obiektóe
-     * Powinna zwrócić łączną powierzchnię dla każdego obiektu w kolekcji
-     * Nie wiem do końca w jaką klasę zamknąć wynik bo trzeba to zwrócić jako JSON
+     * PrzykĹ‚ad funkcji przyjmujÄ…cej kolekcje obiektĂłe
+     * Powinna zwrĂłciÄ‡ Ĺ‚Ä…cznÄ… powierzchniÄ™ dla kaĹĽdego obiektu w kolekcji
+     * Nie wiem do koĹ„ca w jakÄ… klasÄ™ zamknÄ…Ä‡ wynik bo trzeba to zwrĂłciÄ‡ jako JSON
     */
     /** 
      * Calculate the total area of a building with an id passed as a parameter
@@ -416,6 +416,88 @@ public class BuildingOperations{
         
         powerPerSquare=powerPerLevel/levelCount;
         Value value=new Value("BuildingPowerPerSquare",id,powerPerSquare);
+        return value;
+    }
+    
+    /** 
+     * Calculate the avarage heating per cube of a room with an id passed as a parameter
+     * @param id 
+     * @return value- class containing information about room heating per cube
+    */
+    public Value getRoomHeatPerCube(Integer id){
+    	Room room=findRoomByID(id);
+    	if(room.getID()==-1){
+    		Value value=new Value("ERROR! That is not a room ID!",id,-1);
+    		return value;
+    	}
+    	
+        float heatPerCube=room.getHeating()/room.getCube();
+        Value value=new Value("RoomHeatPerCube",id,heatPerCube);
+        return value;
+    }
+    
+    /** 
+     * Calculate the average heating per cube of a level with an id passed as a parameter
+     * @param id 
+     * @return value- class containing information about level's average heating per cube
+    */
+    public Value getLevelHeatPerCube(Integer id){
+    	float heatPerCube=0;
+    	float heating=0;
+    	int count=0;
+    	float val=0;
+    	
+    	Level level=findLevelByID(id);
+    	if(level.getID()==-1){
+    		Value value=new Value("ERROR! That is not a level ID!",id,-1);
+    		return value;
+    	}
+    	
+        for (Room room : level.getRooms()) {
+        	val=room.getHeating()/room.getCube();
+        	heating+=val;
+        	count++;
+        }
+        
+        heatPerCube=heating/count;
+        Value value=new Value("LevelHeatPerCube",id,heatPerCube);
+        return value;
+    }
+    
+    /** 
+     * Calculate the average heating per cube meter of a building with an id passed as a parameter
+     * @param id 
+     * @return value- class containing information about buildings's average heating per cube
+    */
+    public Value getBuildingHeatPerCube(Integer id){
+    	float heatPerCube=0;
+    	float heating=0;
+    	int count=0;
+    	int levelCount=0;
+    	float val=0;
+    	float heatPerLevel=0;
+    	
+    	Building building=findBuildingByID(id);
+    	if(building.getID()==-1){
+    		Value value=new Value("ERROR! That is not a building ID!",id,-1);
+    		return value;
+    	}
+    	
+        for (Level level : building.getLevels()) {
+    
+             for (Room room : level.getRooms()) {
+             	val=room.getHeating()/room.getCube();
+            	heating+=val;
+            	count++;
+             }
+             heatPerLevel=heating/count;
+             levelCount++;
+             heating=0;
+             count=0;
+        }
+        
+        heatPerCube=heatPerLevel/levelCount;
+        Value value=new Value("BuildingHeatPerCube",id,heatPerCube);
         return value;
     }
 }

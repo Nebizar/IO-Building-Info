@@ -13,9 +13,8 @@ public class Result{
         this.code = code;
     }
 
-    /**
-     * returns information about the operation in JSON format
-     */
+     //returns information about the operation in JSON format
+
     public String getAsJsonString(){
         String rs = "{\"feedback\": \"" + feedback + "\", \"code\": " + Integer.toString(code) + "}";
         return rs;

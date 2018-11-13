@@ -66,6 +66,31 @@ Wyœwietlenie kubatury budynku o wybranym ID:
 Wyœwietlenie Danych ca³ego budynku o wybranym ID:
 ```http://localhost:8080/building?id=12```
 
+### Kompilacja
+
+Z wiersza poleceñ:
+
+```mvn compile```
+
+### Stworzenie paczki do dystrybucji
+
+Z wiersza poleceñ:
+
+```mvn package```
+
+### Instalacja paczki w repozytorium lokalnym
+
+Z wiersza poleceñ:
+
+```mvn install```
+
+### Generowanie dokumentacji
+
+Z wiersza poleceñ:
+
+```mvn javadoc:javadoc```
+
+
 ## Struktura Danych
 
 * Lokacja [Location](https://github.com/Nebizar/IO-Building-Info/blob/master/src/main/java/pl/put/poznan/building_info/structures/Location.java) to budynek, poziom, lub pomieszczenie

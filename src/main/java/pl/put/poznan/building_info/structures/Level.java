@@ -1,15 +1,34 @@
 package pl.put.poznan.building_info.structures;
+/** Klasa reprezentujaca poziom budynku. Zawiera podstawowe informacje o obiekcie. Dziedziczy z klasy Location
+ * @since 0.1
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Level extends Location{
 
+	  /** <p>Podstawowe cechy obiektu:</p>
+	   * @param rooms - lista pomieszczen znajdujacych sie na tym poziomie
+	   * @param area - laczna powierzchnia poziomu
+	   * @param cube - laczna kubatura poziomu
+	   * @param heating - laczne zuzycie energii na ogrzewanie dla poziomu
+	   * @param lightPower - laczna moc oswietlenia dla poziomu
+	   */
     private ArrayList<Room> rooms = new ArrayList<Room>();
     private float area;
     private float cube;
     private float heating;
     private float lightPower;
     
+    /**
+     * <p>Konstruktor tworzacy poziom wraz z podstawowymi informacjami o nim</p>
+     *
+     * @param id- unikalna wartosc opisujaca pomieszczenie
+     * @param name-nazwa obiektu
+     * dziedziczone z klasy location
+     * oblicza parametry dla poziomu sumujac dane elementy dla wszystkich pomieszczen znajdujacych sie na danym poziomie
+     */
     public Level(int id, String name){
         super(id, name);
         Room room;
@@ -31,7 +50,10 @@ public class Level extends Location{
         
 
     }
-
+    /**
+     * <p>Funkcja dodajaca pomieszczenie do listy pomieszczen. 
+     * Powieksza wartosc parametrow opisujach poziom o wartosci parametrow dodanego pomieszczenia</p>
+     */
     public void addRoom(Room newRoom){
         rooms.add(newRoom);
         this.area = this.area+newRoom.getArea();

@@ -60,11 +60,8 @@ public class BuildingOperations{
         generator = null;
     }
 
-    /**
-     * Change new building elements ID's and add building to existing data structures
-     * @param newBuilding 
-     * @return Result class response
-     */
+//Change new building elements ID's and add building to existing data structures
+
     public Result addBuilding(Building newBuilding){
         int baseID = currentID;
 
@@ -89,11 +86,8 @@ public class BuildingOperations{
         return buildings;
     }
 
-    /**
-     * Find locations specified by IDs
-     * @param IDs
-     * @return Collection of elements of specified IDs
-     */
+//Find locations specified by IDs
+
     public Collection getLocationsByIDs(ArrayList<Integer> IDs){
         Collection found = new Collection();
 
@@ -119,12 +113,8 @@ public class BuildingOperations{
         return found;
     }
 
-    /**
-     * Check if the value is in the array
-     * @param array
-     * @param val
-     * @return
-     */
+//Check if the value is in the array
+
     public boolean contains(ArrayList<Integer> array, int val){
 
         for(int k: array){
@@ -151,11 +141,8 @@ public class BuildingOperations{
         return result;
     }
     
-    /**
-     *Find a building by id visible for user or a special error building
-     *@param id- id of the building to search for
-     *@return building with the id specified in the params 
-    */
+//Find a building by id visible for user or a special error building
+
     private Building findBuildingByID(int id) {
     	for(Building building: buildings) {
     		if(building.getID()==id) {
@@ -166,11 +153,8 @@ public class BuildingOperations{
     	return error;
     }
 
-    /**
-     *Find a level by id visible for user or a special error level
-     *@param id- id of the level to search for
-     *@return level with the id specified in the params 
-    */
+//Find a level by id visible for user or a special error level
+
     private Level findLevelByID(int id) {
     	for(Building building: buildings) {
     		for(Level level: building.getLevels()) {
@@ -183,11 +167,8 @@ public class BuildingOperations{
     	return error;
     }
     
-    /**
-     *Find a room by id visible for user or a special error room
-     *@param id- id of the room to search for
-     *@return room with the id specified in the params 
-    */
+//Find a room by id visible for user or a special error room
+
     private Room findRoomByID(int id) {
     	for(Building building: buildings) {
     		for(Level level: building.getLevels()) {
@@ -208,11 +189,8 @@ public class BuildingOperations{
      * Powinna zwrĂłciÄ‡ Ĺ‚Ä…cznÄ… powierzchniÄ™ dla kaĹĽdego obiektu w kolekcji
      * Nie wiem do koĹ„ca w jakÄ… klasÄ™ zamknÄ…Ä‡ wynik bo trzeba to zwrĂłciÄ‡ jako JSON
     */
-    /** 
-     * Calculate the total area of a building with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about building area
-    */
+//Calculate the total area of a building with an id passed as a parameter
+
     public Value getBuildingArea(Integer id){
     	float area=0;
     	
@@ -232,11 +210,8 @@ public class BuildingOperations{
         return value;
     }
     
-    /** 
-     * Calculate the total area of a level with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about level area
-    */
+//Calculate the total area of a level with an id passed as a parameter
+
     public Value getLevelArea(Integer id){
     	float area=0;
     	
@@ -253,11 +228,8 @@ public class BuildingOperations{
         return value;
     }
     
-    /** 
-     * Calculate the total cube of a room with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about room area
-    */
+//Calculate the total cube of a room with an id passed as a parameter
+
     public Value getRoomArea(Integer id){
     	Room room=findRoomByID(id);
     	if(room.getID()==-1){
@@ -271,11 +243,8 @@ public class BuildingOperations{
         }
     }
     
-    /** 
-     * Calculate the total cube of a building with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about building cube
-    */
+//Calculate the total cube of a building with an id passed as a parameter
+
     public Value getBuildingCube(Integer id){
     	float cube=0;
     	
@@ -295,11 +264,8 @@ public class BuildingOperations{
         return value;
     }
     
-    /** 
-     * Calculate the total cube of a level with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about level cube
-    */
+//Calculate the total cube of a level with an id passed as a parameter
+
     public Value getLevelCube(Integer id){
     	float cube=0;
     	
@@ -316,11 +282,8 @@ public class BuildingOperations{
         return value;
     }
     
-    /** 
-     * Calculate the total cube of a room with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about room cube
-    */
+//Calculate the total cube of a room with an id passed as a parameter
+
     public Value getRoomCube(Integer id){
     	float cube=0;
     	
@@ -335,11 +298,8 @@ public class BuildingOperations{
         return value;
     }
     
-    /** 
-     * Calculate the power per square meter of a room with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about room power per square
-    */
+//Calculate the power per square meter of a room with an id passed as a parameter
+
     public Value getRoomPowerPerSquare(Integer id){
     	float powerPerSquare=0;
     	
@@ -354,11 +314,8 @@ public class BuildingOperations{
         return value;
     }
     
-    /** 
-     * Calculate the average power per square meter of a level with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about level's average power per square
-    */
+//Calculate the average power per square meter of a level with an id passed as a parameter
+
     public Value getLevelPowerPerSquare(Integer id){
     	float powerPerSquare=0;
     	float power=0;
@@ -382,11 +339,8 @@ public class BuildingOperations{
         return value;
     }
     
-    /** 
-     * Calculate the average power per square meter of a building with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about buildings's average power per square
-    */
+// Calculate the average power per square meter of a building with an id passed as a parameter
+
     public Value getBuildingPowerPerSquare(Integer id){
     	float powerPerSquare=0;
     	float power=0;
@@ -419,11 +373,8 @@ public class BuildingOperations{
         return value;
     }
     
-    /** 
-     * Calculate the avarage heating per cube of a room with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about room heating per cube
-    */
+// Calculate the avarage heating per cube of a room with an id passed as a parameter
+
     public Value getRoomHeatPerCube(Integer id){
     	Room room=findRoomByID(id);
     	if(room.getID()==-1){
@@ -436,11 +387,8 @@ public class BuildingOperations{
         return value;
     }
     
-    /** 
-     * Calculate the average heating per cube of a level with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about level's average heating per cube
-    */
+     //Calculate the average heating per cube of a level with an id passed as a parameter
+
     public Value getLevelHeatPerCube(Integer id){
     	float heatPerCube=0;
     	float heating=0;
@@ -464,11 +412,9 @@ public class BuildingOperations{
         return value;
     }
     
-    /** 
-     * Calculate the average heating per cube meter of a building with an id passed as a parameter
-     * @param id 
-     * @return value- class containing information about buildings's average heating per cube
-    */
+
+     //Calculate the average heating per cube meter of a building with an id passed as a parameter
+
     public Value getBuildingHeatPerCube(Integer id){
     	float heatPerCube=0;
     	float heating=0;

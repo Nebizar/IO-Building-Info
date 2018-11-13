@@ -87,6 +87,10 @@ Wyœwietlenie Danych ca³ego budynku o wybranym ID:
 
 
 
+## Rejestr produktu
+
+* [Trello](https://trello.com/b/81rhAaNb/io-building-info) - obs³uga i zarz¹dzanie zadaniami w zespole
+
 ## Autorzy
 
 

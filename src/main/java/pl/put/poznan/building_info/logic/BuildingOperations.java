@@ -202,9 +202,7 @@ public class BuildingOperations{
     	
         for (Level level : building.getLevels()) {
     
-             for (Room room : level.getRooms()) {
-            	 area += room.getArea();
-             }
+            	 area += level.getArea();
         }
         Value value=new Value("BuildingArea",id,area);
         return value;
@@ -221,27 +219,27 @@ public class BuildingOperations{
     		return value;
     	}
     	
-        for (Room room : level.getRooms()) {
-        	area+=room.getArea();
-        }
-        Value value=new Value("LevelArea",id,area);
-        return value;
+    	 else{
+             area=level.getArea();
+             Value value=new Value("LevelArea",id,area);
+             return value;
+    	 }
     }
     
 //Calculate the total cube of a room with an id passed as a parameter
 
-    public Value getRoomArea(Integer id){
-    	Room room=findRoomByID(id);
-    	if(room.getID()==-1){
-    		Value value=new Value("ERROR! That is not a room ID!",id,-1);
-    		return value;
-    	}
-        else{
-            float area=room.getArea();
-            Value value=new Value("RoomArea",id,area);
-            return value;
+        public Value getRoomArea(Integer id){
+        	Room room=findRoomByID(id);
+        	if(room.getID()==-1){
+        		Value value=new Value("ERROR! That is not a room ID!",id,-1);
+        		return value;
+        	}
+            else{
+                float area=room.getArea();
+                Value value=new Value("RoomArea",id,area);
+                return value;
+            }
         }
-    }
     
 //Calculate the total cube of a building with an id passed as a parameter
 
@@ -255,10 +253,8 @@ public class BuildingOperations{
     	}
     	
         for (Level level : building.getLevels()) {
-    
-             for (Room room : level.getRooms()) {
-            	 cube+=room.getCube();
-             }
+
+            	 cube+=level.getCube();
         }
         Value value=new Value("BuildingCube",id,cube);
         return value;
@@ -275,9 +271,7 @@ public class BuildingOperations{
     		return value;
     	}
     	
-        for (Room room : level.getRooms()) {
-        	cube+=room.getCube();
-        }
+    	cube=level.getCube();
         Value value=new Value("LevelCube",id,cube);
         return value;
     }
@@ -327,14 +321,8 @@ public class BuildingOperations{
     		Value value=new Value("ERROR! That is not a level ID!",id,-1);
     		return value;
     	}
-    	
-        for (Room room : level.getRooms()) {
-        	val=room.getLightPower()/room.getArea();
-        	power+=val;
-        	count++;
-        }
-        
-        powerPerSquare=power/count;
+
+        powerPerSquare=level.getLightPower()/level.getArea();
         Value value=new Value("LevelPowerPerSquare",id,powerPerSquare);
         return value;
     }
@@ -357,18 +345,11 @@ public class BuildingOperations{
     	
         for (Level level : building.getLevels()) {
     
-             for (Room room : level.getRooms()) {
-             	val=room.getLightPower()/room.getArea();
-            	power+=val;
-            	count++;
-             }
-             powerPerLevel=power/count;
-             levelCount++;
-             power=0;
-             count=0;
+            power+=level.getLightPower();
+            count+=level.getArea();
         }
         
-        powerPerSquare=powerPerLevel/levelCount;
+        powerPerSquare=power/count;
         Value value=new Value("BuildingPowerPerSquare",id,powerPerSquare);
         return value;
     }
@@ -400,14 +381,8 @@ public class BuildingOperations{
     		Value value=new Value("ERROR! That is not a level ID!",id,-1);
     		return value;
     	}
-    	
-        for (Room room : level.getRooms()) {
-        	val=room.getHeating()/room.getCube();
-        	heating+=val;
-        	count++;
-        }
         
-        heatPerCube=heating/count;
+        heatPerCube=level.getHeating()/level.getCube();
         Value value=new Value("LevelHeatPerCube",id,heatPerCube);
         return value;
     }
@@ -431,18 +406,11 @@ public class BuildingOperations{
     	
         for (Level level : building.getLevels()) {
     
-             for (Room room : level.getRooms()) {
-             	val=room.getHeating()/room.getCube();
-            	heating+=val;
-            	count++;
-             }
-             heatPerLevel=heating/count;
-             levelCount++;
-             heating=0;
-             count=0;
+             heating+=level.getHeating();
+             count+=level.getCube();  
         }
         
-        heatPerCube=heatPerLevel/levelCount;
+        heatPerCube=heating/count;
         Value value=new Value("BuildingHeatPerCube",id,heatPerCube);
         return value;
     }

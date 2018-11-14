@@ -114,7 +114,11 @@ Z wiersza poleceñ:
 
 ## Rejestr produktu
 
-* [Trello](https://trello.com/b/81rhAaNb/io-building-info) - obs³uga i zarz¹dzanie zadaniami w zespole
+Obs³uga i zarz¹dzanie zadaniami w zespole - Trello
+
+* [Trello](https://trello.com/b/81rhAaNb/io-building-info-sprint-1) - SPRINT #1
+
+* [Trello](https://trello.com/b/FNcwC89E/io-building-info-sprint-2) - SPRINT #2
 
 ## Autorzy
 

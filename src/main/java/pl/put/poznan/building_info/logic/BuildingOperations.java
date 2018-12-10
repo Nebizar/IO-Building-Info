@@ -143,7 +143,7 @@ public class BuildingOperations{
     
 //Find a building by id visible for user or a special error building
 
-    private Building findBuildingByID(int id) {
+    public Building findBuildingByID(int id) {
     	for(Building building: buildings) {
     		if(building.getID()==id) {
     			return building;

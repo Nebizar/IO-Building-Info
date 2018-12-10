@@ -155,7 +155,7 @@ public class BuildingOperations{
 
 //Find a level by id visible for user or a special error level
 
-    private Level findLevelByID(int id) {
+    public Level findLevelByID(int id) {
     	for(Building building: buildings) {
     		for(Level level: building.getLevels()) {
 	    		if(level.getID()==id) {
@@ -169,7 +169,7 @@ public class BuildingOperations{
     
 //Find a room by id visible for user or a special error room
 
-    private Room findRoomByID(int id) {
+    public Room findRoomByID(int id) {
     	for(Building building: buildings) {
     		for(Level level: building.getLevels()) {
     			for(Room room: level.getRooms()) {

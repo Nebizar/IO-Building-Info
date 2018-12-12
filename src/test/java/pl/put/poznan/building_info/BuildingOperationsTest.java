@@ -22,15 +22,13 @@ public class BuildingOperationsTest {
 	
 	public static BuildingOperations bo;
 	public static BuildingOperations boMocked;
+	public static BuildingOperations boMockedRooms;
 	public static Value result;
 	public static Level levelMock;
-	//public static Room roomMock;
+	public static Room roomMock;
 	
 	@BeforeAll
 	public static void initialize() {
-		
-		
-		
 		ArrayList<Building> buildingData = new ArrayList<Building>();
 		int currentID = 0;
 		
@@ -54,15 +52,18 @@ public class BuildingOperationsTest {
     	//create normal Objects
     	boMocked = new BuildingOperations();
 		boMocked.setBuildings(buildingData);
-		bo = new BuildingOperations();
+		
+		//Second BuildingOperations Object -> mocked Room objects
+        Building building2 = new Building(currentID, "Building");
+        
+        
+        roomMock = mock(Room.class);
+        when(roomMock.getArea()).thenReturn((float)5.0);
+        when(roomMock.getCube()).thenReturn((float)10.0);
+        when(roomMock.getHeating()).thenReturn((float)15.0);
+        when(roomMock.getLightPower()).thenReturn((float)20.0);
             
-            /*roomMock = mock(Room.class);
-            when(roomMock.getArea()).thenReturn((float)10.0);
-        	when(roomMock.getCube()).thenReturn((float)10.0);
-        	when(roomMock.getHeating()).thenReturn((float)10.0);
-        	when(roomMock.getLightPower()).thenReturn((float)10.0);*/
-            //levelMock.addRoom(roomMock);
-     
+        bo = new BuildingOperations();
 	}
 
     @Test

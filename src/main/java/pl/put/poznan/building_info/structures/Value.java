@@ -12,4 +12,8 @@ public class Value{
     	value=param3;
     }
     
+    public float getValue() {
+    	return value;
+    }
+    
 }

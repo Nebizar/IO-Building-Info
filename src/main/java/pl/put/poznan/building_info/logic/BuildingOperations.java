@@ -31,20 +31,25 @@ public class BuildingOperations{
 
 
     public BuildingOperations(){
-        createSomeData();
+        buildings = createSomeData();
+    }
+    
+    public void setBuildings(ArrayList<Building> arr) {
+    	buildings = arr;
     }
 
 
     /**
      * Creates new data 
      */
-    public void createSomeData(){
+    public ArrayList<Building> createSomeData(){
         Random generator = new Random();
+        ArrayList<Building> buildingCreator = new ArrayList<Building>();
 
         for(int k = 0; k < 2; k++){
             Building building = new Building(currentID, "Building");
             currentID ++;
-            buildings.add(building);
+            buildingCreator.add(building);
             for(int z = 0; z < 4; z++){
                 Level level = new Level(currentID, "Level");
                 currentID ++;
@@ -58,6 +63,7 @@ public class BuildingOperations{
         }
 
         generator = null;
+        return buildingCreator;
     }
 
 //Change new building elements ID's and add building to existing data structures

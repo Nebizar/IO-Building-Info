@@ -44,6 +44,7 @@ public class BuildingOperationsTest {
         when(roomMock.getCube()).thenReturn((float)10.0);
         when(roomMock.getHeating()).thenReturn((float)15.0);
         when(roomMock.getLightPower()).thenReturn((float)20.0);
+        when(roomMock.getID()).thenReturn(3);
 		
 		int currentID = 0;
 		
@@ -135,6 +136,13 @@ public class BuildingOperationsTest {
     	verify(roomMock, times(3)).getArea();
     	assertEquals(15, result.getValue());
     }
+    
+    @Test
+    public void getRoomAreaTest() {
+    	result = boMockedRooms.getRoomArea(3);
+    	verify(roomMock, times(5)).getArea();
+    	assertEquals(5, result.getValue());
+    }
     //END AREA TESTS
     //CUBE TESTS
     @Test
@@ -150,6 +158,13 @@ public class BuildingOperationsTest {
     	verify(roomMock, times(3)).getCube();
     	assertEquals(30, result.getValue());
     }
+    
+    @Test
+    public void getRoomCubeTest() {
+    	result = boMockedRooms.getRoomCube(3);
+    	verify(roomMock, times(5)).getCube();
+    	assertEquals(10, result.getValue());
+    }
     //END CUBE TESTS
     //POWER TESTS
     @Test
@@ -163,8 +178,16 @@ public class BuildingOperationsTest {
     @Test
     public void getLevelPowerPerSquareTest() {
     	result = boMockedRooms.getLevelPowerPerSquare(1);
-    	verify(roomMock, times(3)).getArea();
-    	verify(roomMock, times(3)).getLightPower();
+    	verify(roomMock, times(5)).getArea();
+    	verify(roomMock, times(4)).getLightPower();
+    	assertEquals(4, result.getValue());
+    }
+    
+    @Test
+    public void getRoomPowerPerSquareTest() {
+    	result = boMockedRooms.getRoomPowerPerSquare(3);
+    	verify(roomMock, times(4)).getArea();
+    	verify(roomMock, times(4)).getLightPower();
     	assertEquals(4, result.getValue());
     }
     //END POWER TESTS
@@ -184,7 +207,13 @@ public class BuildingOperationsTest {
     	verify(roomMock, times(3)).getHeating();
     	assertEquals(1.5, result.getValue());
     }
-    //END HEAT TESTS
     
-
+    @Test
+    public void getRoomHeatPerCubeTest() {
+    	result = boMockedRooms.getRoomHeatPerCube(3);
+    	verify(roomMock, times(4)).getCube();
+    	verify(roomMock, times(4)).getHeating();
+    	assertEquals(1.5, result.getValue());
+    }
+    //END HEAT TESTS
 }

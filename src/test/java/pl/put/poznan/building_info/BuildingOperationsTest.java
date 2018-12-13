@@ -76,7 +76,8 @@ public class BuildingOperationsTest {
         building2.addLevel(level); 
 		boMockedRooms = new BuildingOperations();
 		boMockedRooms.setBuildings(buildingDataRoom);
-            
+        //END #2 Object
+		
         bo = new BuildingOperations();
 	}
 	//FIND BY ID TESTS

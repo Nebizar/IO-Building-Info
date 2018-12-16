@@ -90,6 +90,12 @@ Z wiersza poleceñ:
 
 ```mvn javadoc:javadoc```
 
+### Uruchamianie testów jednostkowych
+
+Z wiersza poleceñ:
+
+```mvn test```
+
 
 ## Struktura Danych
 

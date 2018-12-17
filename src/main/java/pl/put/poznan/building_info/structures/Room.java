@@ -11,6 +11,7 @@ public class Room extends Location{
 	   * @param cube - kubatura pomieszczenia
 	   * @param heating - zuzycie energii na ogrzewanie dla calego pomieszczenia
 	   * @param lightPower - moc oswietlenia dla calego pomieszczenia
+	   * @param rent - cena za wynajecie pomieszczenia
 	   */
 	private float length;
 	private float width;
@@ -19,6 +20,7 @@ public class Room extends Location{
     private float cube;
     private float heating;
     private float lightPower;
+    private float rent;
 
     /**
      * <p>Konstruktor tworzacy pomieszczenie wraz z podstawowymi informacjami o nim</p>
@@ -27,7 +29,7 @@ public class Room extends Location{
      * @param name-nazwa obiektu
      * dziedziczone z klasy location
      */
-    public Room(int id, String name, float length, float width, float height, float heating, float lightPower){
+    public Room(int id, String name, float length, float width, float height, float heating, float lightPower, float rent){
         super(id, name);
         this.length = length;
         this.width = width;
@@ -36,6 +38,7 @@ public class Room extends Location{
         this.cube = this.area * height;
         this.heating = heating;
         this.lightPower = lightPower;
+        this.rent = rent;
     }
 
     public float getHeating() {
@@ -52,5 +55,9 @@ public class Room extends Location{
     
     public float getLightPower() {
     	return lightPower;
+    }
+    
+    public float getRent() {
+    	return rent;
     }
 }

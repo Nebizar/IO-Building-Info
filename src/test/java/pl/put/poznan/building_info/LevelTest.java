@@ -28,7 +28,7 @@ public class LevelTest {
 	@Test
 	public void addRoomAreaUpgradedTest() {
 		value1 = level.getArea();
-		room = new Room(1,"Room",2,4,6,8,10);
+		room = new Room(1,"Room",2,4,6,8,10,12);
 		level.addRoom(room);
 		assertEquals(8,level.getArea()-value1);
 	}
@@ -36,7 +36,7 @@ public class LevelTest {
 	@Test
 	public void addRoomCubeUpgradedTest() {
 		value1 = level.getCube();
-		room = new Room(1,"Room",2,4,6,8,10);
+		room = new Room(1,"Room",2,4,6,8,10,12);
 		level.addRoom(room);
 		assertEquals(48,level.getCube()-value1);
 	}
@@ -44,7 +44,7 @@ public class LevelTest {
 	@Test
 	public void addRoomPowerUpgradedTest() {
 		value1 = level.getLightPower();
-		room = new Room(1,"Room",2,4,6,8,10);
+		room = new Room(1,"Room",2,4,6,8,10,12);
 		level.addRoom(room);
 		assertEquals(10,level.getLightPower()-value1);
 	}
@@ -52,7 +52,7 @@ public class LevelTest {
 	@Test
 	public void addRoomHeatingUpgradedTest() {
 		value1 = level.getHeating();
-		room = new Room(1,"Room",2,4,6,8,10);
+		room = new Room(1,"Room",2,4,6,8,10,12);
 		level.addRoom(room);
 		assertEquals(8,level.getHeating()-value1);
 	}

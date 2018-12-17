@@ -38,12 +38,14 @@ public class BuildingOperationsTest {
     	when(levelMock.getCube()).thenReturn((float)5.0);
     	when(levelMock.getHeating()).thenReturn((float)20.0);
     	when(levelMock.getLightPower()).thenReturn((float)50.0);
+    	when(levelMock.getRent()).thenReturn((float)100.0);
     	//Mocking room object and its methods
     	roomMock = mock(Room.class);
         when(roomMock.getArea()).thenReturn((float)5.0);
         when(roomMock.getCube()).thenReturn((float)10.0);
         when(roomMock.getHeating()).thenReturn((float)15.0);
         when(roomMock.getLightPower()).thenReturn((float)20.0);
+        when(roomMock.getRent()).thenReturn((float)25.0);
         when(roomMock.getID()).thenReturn(3);
 		
 		int currentID = 0;
@@ -167,6 +169,28 @@ public class BuildingOperationsTest {
     	assertEquals(10, result.getValue());
     }
     //END CUBE TESTS
+    //RENT TESTS
+    @Test
+    public void getBuildingRentTest() {
+    	result = boMocked.getBuildingRent(0);
+    	verify(levelMock, times(5)).getRent();
+    	assertEquals(500, result.getValue());
+    }
+    
+    @Test
+    public void getLevelRentTest() {
+    	result = boMockedRooms.getLevelRent(1);
+    	verify(roomMock, times(3)).getRent();
+    	assertEquals(75, result.getValue());
+    }
+    
+    @Test
+    public void getRoomRentTest() {
+    	result = boMockedRooms.getRoomRent(3);
+    	verify(roomMock, times(4)).getRent();
+    	assertEquals(25, result.getValue());
+    }
+    //END RENT TESTS
     //POWER TESTS
     @Test
     public void getBuildingPowerPerSquareTest() {

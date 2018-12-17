@@ -420,4 +420,56 @@ public class BuildingOperations{
         Value value=new Value("BuildingHeatPerCube",id,heatPerCube);
         return value;
     }
+    
+  //Calculate the total rent of a building with an id passed as a parameter
+
+    public Value getBuildingRent(Integer id){
+    	float rent=0;
+    	
+    	Building building=findBuildingByID(id);
+    	if(building.getID()==-1){
+    		Value value=new Value("ERROR! That is not a building ID!",id,-1);
+    		return value;
+    	}
+    	
+        for (Level level : building.getLevels()) {
+    
+            	 rent += level.getRent();
+        }
+        Value value=new Value("BuildingRent",id,rent);
+        return value;
+    }
+    
+  //Calculate the total rent of a level with an id passed as a parameter
+
+    public Value getLevelRent(Integer id){
+    	float rent=0;
+    	
+    	Level level=findLevelByID(id);
+    	if(level.getID()==-1){
+    		Value value=new Value("ERROR! That is not a level ID!",id,-1);
+    		return value;
+    	}
+    	
+    	 else{
+             rent=level.getRent();
+             Value value=new Value("LevelRent",id,rent);
+             return value;
+    	 }
+    }
+    
+  //Calculate the total rent of a room with an id passed as a parameter
+
+    public Value getRoomRent(Integer id){
+    	Room room=findRoomByID(id);
+    	if(room.getID()==-1){
+    		Value value=new Value("ERROR! That is not a room ID!",id,-1);
+    		return value;
+    	}
+        else{
+            float rent=room.getRent();
+            Value value=new Value("RoomRent",id,rent);
+            return value;
+        }
+    }
 }

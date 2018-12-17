@@ -14,12 +14,14 @@ public class Level extends Location{
 	   * @param cube - laczna kubatura poziomu
 	   * @param heating - laczne zuzycie energii na ogrzewanie dla poziomu
 	   * @param lightPower - laczna moc oswietlenia dla poziomu
+	   * @param rent - cena za wynajecie pomieszczenia
 	   */
     private ArrayList<Room> rooms = new ArrayList<Room>();
     private float area;
     private float cube;
     private float heating;
     private float lightPower;
+    private float rent;
     
     /**
      * <p>Konstruktor tworzacy poziom wraz z podstawowymi informacjami o nim</p>
@@ -60,6 +62,7 @@ public class Level extends Location{
         this.cube = this.cube+newRoom.getCube();
         this.heating = this.heating+newRoom.getHeating();
         this.lightPower = this.lightPower+newRoom.getLightPower();
+        this.rent = this.rent+newRoom.getRent();
     }
 
     public ArrayList<Room> getRooms(){
@@ -80,6 +83,10 @@ public class Level extends Location{
     
     public float getLightPower() {
     	return lightPower;
+    }
+    
+    public float getRent() {
+    	return rent;
     }
     public void setArea(float area){
         this.area = area;

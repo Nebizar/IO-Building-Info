@@ -1,7 +1,7 @@
 # IO-Building-Info
 
 
-Dla administratorów budynków, którzy pragn¹ optymalizowaæ koszty zarz¹dzania budynkami  nasza aplikacja Building Info umo¿liwi pozyskanie informacji o parametrach budynku na poziomie pomieszczeñ, kondygnacji oraz ca³ych budynków. Aplikacja bêdzie dostêpna poprzez GUI a tak¿e jako zdalne API dziêki czemu mo¿na j¹ zintegrowaæ z istniej¹cymi narzêdziami.
+Dla administratorÃ³w budynkÃ³w, ktÃ³rzy pragnÄ… optymalizowaÄ‡ koszty zarzÄ…dzania budynkami  nasza aplikacja Building Info umoÅ¼liwi pozyskanie informacji o parametrach budynku na poziomie pomieszczeÅ„, kondygnacji oraz caÅ‚ych budynkÃ³w. Aplikacja bÄ™dzie dostÄ™pna poprzez GUI a takÅ¼e jako zdalne API dziÄ™ki czemu moÅ¼na jÄ… zintegrowaÄ‡ z istniejÄ…cymi narzÄ™dziami.
 
 
 
@@ -17,11 +17,11 @@ Aplikacja REST'owa napisana w Javie - wymaga pobranego JDK (wersja 1.7 - 1.8).
 
 
 
-### Uruchomienie i obs³uga
+### Uruchomienie i obsÅ‚uga
 
 
 
-Posiadaj¹c pobranego Maven'a na swojej maszynie, poprzez wiersz poleceñ: 
+PosiadajÄ…c pobranego Maven'a na swojej maszynie, poprzez wiersz poleceÅ„: 
 
 
 ```
@@ -30,7 +30,7 @@ mvn spring-boot:run
 
 
 
-Po skutecznym uruchomieniu w przegl¹darke ³¹czymy siê z localhost. 
+Po skutecznym uruchomieniu w przeglÄ…darke Å‚Ä…czymy siÄ™ z localhost. 
 
 
 ```
@@ -39,60 +39,63 @@ http://localhost:8080/nazwa-operacji
 
 
 
-Ka¿d¹ operacje dotycz¹c¹ jednego obiektu nale¿y zakoñczyæ **ID oczekiwanego obiektu**.
+KaÅ¼dÄ… operacje dotyczÄ…cÄ… jednego obiektu naleÅ¼y zakoÅ„czyÄ‡ **ID oczekiwanego obiektu**.
 
-Dostêpne operacje:
+DostÄ™pne operacje:
 
-* **building** - Wyœwietla informacje o wszystkich elementach,
+* **building** - WyÅ›wietla informacje o wszystkich elementach,
 * **building/new/** - Dodaje nowy budynek zgodnie z danymi w formacie JSON
-* **getRoomArea** - Wyœwietla powierzchniê pokoju,
-* **getLevelArea** - Wyœwietla powierzchniê poziomu,
-* **getBuildingArea** - Wyœwietla powierzchniê budynku,
-* **getRoomCube** - Wyœwietla kubaturê pokoju,
-* **getLevelCube** - Wyœwietla kubaturê poziomu,
-* **getBuildingCube** - Wyœwietla kubaturê budynku,
-* **getRoomPowerPerSquare** - Oblicza i wyœwietla œredni¹ moc oœwietlenia na metr kwadratowy w pokoju,
-* **getLevelPowerPerSquare** - Oblicza i wyœwietla œredni¹ moc oœwietlenia na metr kwadratowy na poziomie,
-* **getBuildingPowerPerSquare** - Oblicza i wyœwietla œredni¹ moc oœwietlenia na metr kwadratowy w budynku,
-* **getRoomHeatingPerCube** - Oblicza i wyœwietla œrednie zu¿ycie energii na ogrzewanie na metr szeœcienny w pokoju,
-* **getLevelHeatingPerCube** - Oblicza i wyœwietla œrednie zu¿ycie energii na ogrzewanie na metr szeœcienny na poziomie,
-* **getBuildingHeatingPerCube** - Oblicza i wyœwietla œrednie zu¿ycie energii na ogrzewanie na metr szeœcienny w budynku,
+* **getRoomArea** - WyÅ›wietla powierzchniÄ™ pokoju,
+* **getLevelArea** - WyÅ›wietla powierzchniÄ™ poziomu,
+* **getBuildingArea** - WyÅ›wietla powierzchniÄ™ budynku,
+* **getRoomCube** - WyÅ›wietla kubaturÄ™ pokoju,
+* **getLevelCube** - WyÅ›wietla kubaturÄ™ poziomu,
+* **getBuildingCube** - WyÅ›wietla kubaturÄ™ budynku,
+* **getRoomPowerPerSquare** - Oblicza i wyÅ›wietla Å›redniÄ… moc oÅ›wietlenia na metr kwadratowy w pokoju,
+* **getLevelPowerPerSquare** - Oblicza i wyÅ›wietla Å›redniÄ… moc oÅ›wietlenia na metr kwadratowy na poziomie,
+* **getBuildingPowerPerSquare** - Oblicza i wyÅ›wietla Å›redniÄ… moc oÅ›wietlenia na metr kwadratowy w budynku,
+* **getRoomHeatingPerCube** - Oblicza i wyÅ›wietla Å›rednie zuÅ¼ycie energii na ogrzewanie na metr szeÅ›cienny w pokoju,
+* **getLevelHeatingPerCube** - Oblicza i wyÅ›wietla Å›rednie zuÅ¼ycie energii na ogrzewanie na metr szeÅ›cienny na poziomie,
+* **getBuildingHeatingPerCube** - Oblicza i wyÅ›wietla Å›rednie zuÅ¼ycie energii na ogrzewanie na metr szeÅ›cienny w budynku,
+* **getRoomRent** - Oblicza i wyÅ›wietla cenÄ™ wynajmu pomieszczenia,
+* **getLevelRent** - Oblicza i wyÅ›wietla cenÄ™ wynajmu caÅ‚ego poziomu,
+* **getBuildingRent** - Oblicza i wyÅ›wietla cenÄ™ wynajmu caÅ‚ego budynku,
 
 Przyklady:
 
-Wyœwietlenie kubatury budynku o wybranym ID:
+WyÅ›wietlenie kubatury budynku o wybranym ID:
 ```http://localhost:8080/buildingCube?id=0```
 
-Wyœwietlenie Danych ca³ego budynku o wybranym ID:
+WyÅ›wietlenie Danych caÅ‚ego budynku o wybranym ID:
 ```http://localhost:8080/building?id=12```
 
 ### Kompilacja
 
-Z wiersza poleceñ:
+Z wiersza poleceÅ„:
 
 ```mvn compile```
 
 ### Stworzenie paczki do dystrybucji
 
-Z wiersza poleceñ:
+Z wiersza poleceÅ„:
 
 ```mvn package```
 
 ### Instalacja paczki w repozytorium lokalnym
 
-Z wiersza poleceñ:
+Z wiersza poleceÅ„:
 
 ```mvn install```
 
 ### Generowanie dokumentacji
 
-Z wiersza poleceñ:
+Z wiersza poleceÅ„:
 
 ```mvn javadoc:javadoc```
 
-### Uruchamianie testów jednostkowych
+### Uruchamianie testÃ³w jednostkowych
 
-Z wiersza poleceñ:
+Z wiersza poleceÅ„:
 
 ```mvn test```
 
@@ -100,19 +103,19 @@ Z wiersza poleceñ:
 ## Struktura Danych
 
 * Lokacja [Location](https://github.com/Nebizar/IO-Building-Info/blob/master/src/main/java/pl/put/poznan/building_info/structures/Location.java) to budynek, poziom, lub pomieszczenie
-* Budynek [Building](https://github.com/Nebizar/IO-Building-Info/blob/master/src/main/java/pl/put/poznan/building_info/structures/Building.java) mo¿e sk³adaæ siê z poziomów a te z pomieszczeñ
-* Ka¿da lokalizacja jest charakteryzowana przez:
-	* id – unikalny identyfikator
-	* name – opcjonalna nazwa lokalizacji
+* Budynek [Building](https://github.com/Nebizar/IO-Building-Info/blob/master/src/main/java/pl/put/poznan/building_info/structures/Building.java) moÅ¼e skÅ‚adaÄ‡ siÄ™ z poziomÃ³w a te z pomieszczeÅ„
+* KaÅ¼da lokalizacja jest charakteryzowana przez:
+	* id â€“ unikalny identyfikator
+	* name â€“ opcjonalna nazwa lokalizacji
 * Pomieszczenie [Room](https://github.com/Nebizar/IO-Building-Info/blob/master/src/main/java/pl/put/poznan/building_info/structures/Room.java) dodatkowo jest charakteryzowane przez:
 	* area - powierzchnia w m^2
 	* cube - kubatura pomieszczenia w m^3
-	* heating - poziom zu¿ycia energii ogrzewania (float)
-	* light – ³¹czna moc oœwietlenia
+	* heating - poziom zuÅ¼ycia energii ogrzewania (float)
+	* light â€“ Å‚Ä…czna moc oÅ›wietlenia
 * Struktura budynku w JSON np {"levels":[{"rooms":[{"area":16.771454,"cube":86.15964,"heating":193.71202,"lightPower":172.36221,"ID":35,"name":"Room"},{"area":35.63685,"cube":44.08831,"heating":74.20811,"lightPower":297.57465,"ID":36,"name":"Room"}],"ID":30,"name":"Level"}],"name":"Building"}
 
 
-## Zbudowane przy u¿yciu
+## Zbudowane przy uÅ¼yciu
 
 * [Maven](https://maven.apache.org/) - Dependency Management
 
@@ -120,7 +123,7 @@ Z wiersza poleceñ:
 
 ## Rejestr produktu
 
-Obs³uga i zarz¹dzanie zadaniami w zespole - Trello
+ObsÅ‚uga i zarzÄ…dzanie zadaniami w zespole - Trello
 
 * [Trello](https://trello.com/b/81rhAaNb/io-building-info-sprint-1) - SPRINT #1
 
@@ -132,14 +135,14 @@ Obs³uga i zarz¹dzanie zadaniami w zespole - Trello
 
 * **Krzysztof Pasiewicz** - [Nebizar](https://github.com/Nebizar)
 * **Angelika Szyszka** - [Angelika444](https://github.com/Angelika444)
-* **Kamil Jêdrzejczak** - [aieozn](https://github.com/aieozn)
-* **Miko³aj Frankowski** - [RolandMcDoland](https://github.com/RolandMcDoland)
+* **Kamil JÄ™drzejczak** - [aieozn](https://github.com/aieozn)
+* **MikoÅ‚aj Frankowski** - [RolandMcDoland](https://github.com/RolandMcDoland)
 
 
 
-## Szczegó³y
+## SzczegÃ³Å‚y
 
 
 
-* Projekt wykonany w ramach przedmiotu In¿ynieria Oprogramowania na Politechnice Poznañskiej,
-* Prowadz¹cy: dr. in¿. Miros³aw Ochodek
+* Projekt wykonany w ramach przedmiotu InÅ¼ynieria Oprogramowania na Politechnice PoznaÅ„skiej,
+* ProwadzÄ…cy: dr. inÅ¼. MirosÅ‚aw Ochodek

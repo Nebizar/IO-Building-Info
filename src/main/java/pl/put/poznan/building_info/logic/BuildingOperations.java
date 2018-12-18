@@ -455,4 +455,34 @@ public class BuildingOperations{
         }
         return value;
     }
+    
+    //Add all rooms with rent that is greater than the threshold passed as a parameter in a building with the ID passed as a parameter
+    
+    public ArrayList<Location> getRoomsWithRentThreshold(Integer id, float threshold){
+        Location found = locations.getEntityByID(id);
+        Value value;
+        ArrayList<Location> roomsWithRent=new ArrayList<>();
+        if(found == null){
+        	roomsWithRent.add(new Building(id,"ERROR! Can't find ID"));		
+        }else{
+            if(found.isBuilding()){
+            	Building building=(Building) found;
+                ArrayList<Level> levels=building.getLevels();
+                for(Level l: levels) {
+                	ArrayList<Room>rooms=l.getRooms();
+                	for(Room r: rooms) {
+                		if(r.getRent()>threshold) {
+                			roomsWithRent.add(r);
+                		}
+                	}
+                }
+                if(roomsWithRent.size()==0) {
+                	roomsWithRent.add(new Building(id,"There are no rooms with rent over that threshold in the Building with that ID!"));
+                }
+            }else{
+                roomsWithRent.add(new Building(id,"ERROR! That is not a Building ID!"));
+            }
+        }
+        return roomsWithRent;
+    }
 }

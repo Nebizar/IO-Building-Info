@@ -47,41 +47,69 @@ public class Room extends Location{
         this.rent = rent;
     }
 
+    /**
+     * <p>Funkcja określająca typ lokalizacji jako Room</p>
+     */
     @Override
     public boolean isRoom(){
         return true;
     }
 
+    /**
+     * <p>Zwraca zużycie energii na ogrzewanie pokoju</p>
+     */
     @Override
     public float getHeating() {
         return heating;
     }
     
+    /**
+     * <p>Zwraca kubaturę pokoju</p>
+     */
     @Override
     public float getCube() {
     	return cube;
     }
 
+    /**
+     * <p>Zwraca powierzchnię pomieszczenia</p>
+     */
     @Override
     public float getArea() {
     	return area;
     }
     
+    /**
+     * <p>Zwraca moc oświetlenia dla całego pomieszczenia</p>
+     */
     @Override
     public float getLightPower() {
     	return lightPower;
     }
 
+    /**
+     * <p>Zwraca cenę wynajmu pomieszczenia</p>
+     */
     @Override
     public float getRent() {
         return rent;
     }
 
+    /**
+     * <p>Zwraca lokacje wewnątrz pomieszczenia</p>
+     */
     @Override
     public ArrayList<Location> getLocations() {
         return null;
     }
 
+    /**
+     * <p>
+     * Zwraca referencję na siebie jeżeli ID pokoju jest równe szukanemu ID,
+     * null w innym przypadku
+     * </p>
+     * @param ID - szukane ID
+     */
     @Override
     public Location getEntityByID(int ID) {
         if(this.getID() == ID){
@@ -91,6 +119,13 @@ public class Room extends Location{
         }
 	}
 
+    /**
+     * <p>
+     * Zwraca referencję na siebie jako listę jednoelementową jeżeli ID pokoju jest równe szukanemu ID,
+     * lista pusta w innym przypadku
+     * </p>
+     * @param ID - szukane ID
+     */
 	@Override
 	public ArrayList<Location> getEntitiesByIDs(ArrayList<Integer> IDs) {
         ArrayList<Location> result = new ArrayList<Location>();

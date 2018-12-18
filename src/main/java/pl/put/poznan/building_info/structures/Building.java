@@ -27,11 +27,18 @@ public class Building extends LocationGroup{
         super.addLocation(newLevel);
     }
 
+    /**
+     * <p>Funkcja określająca typ Lokacji jako Building</p>
+     */
     @Override
     public boolean isBuilding(){
         return true;
     }
 
+    /**
+     * <p>Zwraca wszystkie obiekty typu Level zawierające się w budynku</p>
+     * @return Lista poziomów
+     */
     public ArrayList<Level> getLevels(){
         ArrayList<Level> levels = new ArrayList<Level>();
         ArrayList<Location> locations = this.getLocations();

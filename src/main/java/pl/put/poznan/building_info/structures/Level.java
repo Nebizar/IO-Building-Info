@@ -21,16 +21,26 @@ public class Level extends LocationGroup{
         super(id, name, "Level");
     }
 
+    /**
+     * <p>Dodaje nową lokacje klasy Room do obiektu</p>
+     */
     @Override
     public void addRoom(Room newRoom){
         super.addLocation(newRoom);
     }
     
+    /**
+     * <p>Funkcja określająca typ lokalizacji jako Level</p>
+     */
     @Override
     public boolean isLevel(){
         return true;
     }
 
+    /**
+     * <p>Zwraca wszystkie obiekty typu Room zawierające się w obiekcie</p>
+     * @return Lista pokoi
+     */
     public ArrayList<Room> getRooms(){
         ArrayList<Room> rooms = new ArrayList<Room>();
         ArrayList<Location> locations = this.getLocations();

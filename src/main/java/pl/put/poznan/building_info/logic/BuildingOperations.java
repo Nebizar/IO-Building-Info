@@ -152,8 +152,6 @@ public class BuildingOperations{
 //Find a building by id visible for user or a special error building
 
     public Building findBuildingByID(int id) {
-        System.out.println("-----------------------------------------");
-
     	for(Building building: buildings) {
     		if(building.getID()==id) {
     			return building;

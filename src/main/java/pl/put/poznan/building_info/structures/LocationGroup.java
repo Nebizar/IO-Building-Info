@@ -100,4 +100,13 @@ public abstract class LocationGroup extends Location{
         return result;
     }
 
+    @Override
+    public ArrayList<Room> getRooms(){
+        ArrayList<Room> found = new ArrayList<Room>();
+        for(Location l:this.getLocations()){
+            found.addAll(l.getRooms());
+        }
+        return found;
+    }
+
 }

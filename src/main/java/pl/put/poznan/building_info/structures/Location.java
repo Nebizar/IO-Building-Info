@@ -150,4 +150,7 @@ public abstract class Location{
      * @return - lista elementów spełniających kryteria
      */
     public abstract ArrayList<Location>  getEntitiesByIDs(ArrayList<Integer> IDs);
+
+    public abstract ArrayList<Room> getRooms();
+    
 }

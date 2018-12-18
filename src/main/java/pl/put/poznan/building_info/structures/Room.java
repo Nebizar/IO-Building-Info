@@ -134,5 +134,12 @@ public class Room extends Location{
         }
 
         return result;
-	}
+    }
+    
+    @Override
+    public ArrayList<Room> getRooms(){
+        ArrayList<Room> found = new ArrayList<Room>();
+        found.add(this);
+        return found;
+    }
 }

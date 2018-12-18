@@ -1,10 +1,6 @@
 package pl.put.poznan.building_info.structures;
-/** Klasa reprezentujaca budynek. Zawiera podstawowe informacje o obiekcie. Dziedziczy z klasy Location
- * @since 0.2
- */
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class allLocations extends LocationGroup{
 

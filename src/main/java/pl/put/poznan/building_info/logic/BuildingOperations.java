@@ -206,8 +206,10 @@ public class BuildingOperations{
 //Calculate the total area of a building with an id passed as a parameter
 
     public Value getBuildingArea(Integer id){
-    	float area=0;
-    	
+
+
+        /* TAK TO BYŁO
+        float area=0;
     	Building building=findBuildingByID(id);
     	if(building.getID()==-1){
     		Value value=new Value("ERROR! That is not a building ID!",id,-1);
@@ -220,6 +222,37 @@ public class BuildingOperations{
         }
         Value value=new Value("BuildingArea", id, area);
         return value;
+        */
+
+        /*
+        Dodana jest nowa prywatna zmienna locations - zawiera wszsytkie elementy 
+        Dla tego zmiennej możesz wykonać locations.getEntityByID(id)
+        - Znajduje element / zwraca null jeżeli nie istnieje
+        - Możesz sprawdzić typ elementu .isBuilding() / .isLevel() / .isRoom()
+        - Możesz wykonać na elemencie operacje:
+            - getHeating();
+            - getCube();
+            - getArea();
+            - getLightPower();
+            - getRent();
+            Niezależnie od tego czy jest to Room, Level czy Building zostaje zwrócona wartość (lub suma wartości wewnątrz)
+        */
+
+        Location found = locations.getEntityByID(id);
+        if(found == null){
+            Value value=new Value("ERROR! Can't find ID", id, -1);
+    		return value;
+        }else{
+            if(found.isBuilding()){
+                Value value=new Value("BuildingArea", id, found.getArea());
+                return value;
+            }else{
+                Value value=new Value("ERROR! That is not a building ID!", id, -1);
+    		    return value;
+            }
+        }
+
+        
     }
     
 //Calculate the total area of a level with an id passed as a parameter

@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\allLocations.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\rest\BuildingInfoController.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\Value.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\Building.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\Location.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\Level.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\LocationGroup.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\Collection.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\logic\BuildingOperations.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\info\Result.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\app\BuildingInfoApplication.java
-C:\Users\user\Desktop\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\Room.java
-=======
 C:\Users\mikif\Desktop\Wszystko\Projekty\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\Value.java
 C:\Users\mikif\Desktop\Wszystko\Projekty\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\LocationGroup.java
 C:\Users\mikif\Desktop\Wszystko\Projekty\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\Collection.java
@@ -24,4 +10,3 @@ C:\Users\mikif\Desktop\Wszystko\Projekty\IO-Building-Info\src\main\java\pl\put\p
 C:\Users\mikif\Desktop\Wszystko\Projekty\IO-Building-Info\src\main\java\pl\put\poznan\building_info\app\BuildingInfoApplication.java
 C:\Users\mikif\Desktop\Wszystko\Projekty\IO-Building-Info\src\main\java\pl\put\poznan\building_info\info\Result.java
 C:\Users\mikif\Desktop\Wszystko\Projekty\IO-Building-Info\src\main\java\pl\put\poznan\building_info\structures\Building.java
->>>>>>> a5eddbb05df64c92fad4bd293c25721562bdeb7e

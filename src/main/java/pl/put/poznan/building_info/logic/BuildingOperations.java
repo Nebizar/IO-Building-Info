@@ -467,13 +467,10 @@ public class BuildingOperations{
         }else{
             if(found.isBuilding()){
             	Building building=(Building) found;
-                ArrayList<Level> levels=building.getLevels();
-                for(Level l: levels) {
-                	ArrayList<Room>rooms=l.getRooms();
-                	for(Room r: rooms) {
-                		if(r.getRent()>threshold) {
-                			roomsWithRent.add(r);
-                		}
+                ArrayList<Room> rooms=building.getRooms();
+                for(Room r: rooms) {
+                	if(r.getRent()>threshold) {
+                		roomsWithRent.add(r);
                 	}
                 }
                 if(roomsWithRent.size()==0) {

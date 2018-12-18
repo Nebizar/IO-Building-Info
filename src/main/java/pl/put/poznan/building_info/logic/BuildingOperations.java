@@ -507,4 +507,30 @@ public class BuildingOperations{
         }
         return roomsWithPower;
     }
+    
+    //Add all rooms with heating per cube meter that is greater than the threshold passed as a parameter in a building with the ID passed as a parameter
+    
+    public ArrayList<Location> getRoomsWithHeatingThreshold(Integer id, float threshold){
+        Location found = locations.getEntityByID(id);
+        ArrayList<Location> roomsWithHeating=new ArrayList<>();
+        if(found == null){
+        	roomsWithHeating.add(new Building(id,"ERROR! Can't find ID"));		
+        }else{
+            if(found.isBuilding()){
+            	Building building=(Building) found;
+                ArrayList<Room> rooms=building.getRooms();
+                for(Room r: rooms) {
+                	if(r.getHeating()>threshold) {
+                		roomsWithHeating.add(r);
+                	}
+                }
+                if(roomsWithHeating.size()==0) {
+                	roomsWithHeating.add(new Building(id,"There are no rooms with heating per cube meter over that threshold in the Building with that ID!"));
+                }
+            }else{
+                roomsWithHeating.add(new Building(id,"ERROR! That is not a Building ID!"));
+            }
+        }
+        return roomsWithHeating;
+    }
 }

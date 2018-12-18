@@ -496,7 +496,7 @@ public class BuildingInfoController {
                 float th = Float.parseFloat(threshold);
             
                 Gson g = new Gson();
-                 ArrayList<Location> rooms = transformer.getRoomsWithRentThreshold(i,th);
+                ArrayList<Location> rooms = transformer.getRoomsWithRentThreshold(i,th);
                 Type type = new TypeToken<ArrayList>() {}.getType();
                 String json = g.toJson(rooms, type);
                 g = null;
@@ -523,7 +523,34 @@ public class BuildingInfoController {
                 float th = Float.parseFloat(threshold);
             
                 Gson g = new Gson();
-                 ArrayList<Location> rooms = transformer.getRoomsWithPowerThreshold(i,th);
+                ArrayList<Location> rooms = transformer.getRoomsWithPowerThreshold(i,th);
+                Type type = new TypeToken<ArrayList>() {}.getType();
+                String json = g.toJson(rooms, type);
+                g = null;
+                 return json;
+            }
+            catch (NumberFormatException e)
+            {
+                Result result = new Result("Invalid data", -1);
+                return result.getAsJsonString();
+            }
+    }
+    
+    /** 
+     * Calculates and shows the list of rooms with heating per cube over threshold in a building
+     * param id- building's id
+     * param threshold 
+     * return list of rooms with heating per cube meter over threshold in json format
+     */
+    @RequestMapping(value = "/buildingHeatingOverThreshold", method = RequestMethod.GET, produces = "application/json")
+    public String buildingHeatingOverThreshold(@RequestParam(value = "id", required = true) String buildingId,@RequestParam(value = "threshold", required = true) String threshold) {
+         try
+            {
+                int i = Integer.parseInt(buildingId);
+                float th = Float.parseFloat(threshold);
+            
+                Gson g = new Gson();
+                ArrayList<Location> rooms = transformer.getRoomsWithHeatingThreshold(i,th);
                 Type type = new TypeToken<ArrayList>() {}.getType();
                 String json = g.toJson(rooms, type);
                 g = null;

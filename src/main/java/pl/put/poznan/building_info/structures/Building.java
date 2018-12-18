@@ -1,5 +1,5 @@
 package pl.put.poznan.building_info.structures;
-/** Klasa reprezentujaca budynek. Zawiera podstawowe informacje o obiekcie. Dziedziczy z klasy Location
+/** Klasa reprezentujaca budynek. Zawiera podstawowe informacje o obiekcie. Dziedziczy z klasy LocationGroup
  * @since 0.2
  */
 
@@ -11,7 +11,7 @@ public class Building extends LocationGroup{
      *
      * @param id- unikalna wartosc opisujaca pomieszczenie
      * @param name-nazwa obiektu
-     * dziedziczone z klasy location
+     * dziedziczone z klasy LocationGroup
      */
     public Building(int id, String name){
         super(id, name, "Building");
@@ -28,7 +28,7 @@ public class Building extends LocationGroup{
     }
 
     /**
-     * <p>Funkcja określająca typ Lokacji jako Building</p>
+     * <p>Funkcja okreslajaca typ Lokacji jako Building</p>
      */
     @Override
     public boolean isBuilding(){
@@ -36,8 +36,8 @@ public class Building extends LocationGroup{
     }
 
     /**
-     * <p>Zwraca wszystkie obiekty typu Level zawierające się w budynku</p>
-     * @return Lista poziomów
+     * <p>Zwraca wszystkie obiekty typu Level wchodzace w sklad budynku</p>
+     * @return Lista poziomow
      */
     public ArrayList<Level> getLevels(){
         ArrayList<Level> levels = new ArrayList<Level>();

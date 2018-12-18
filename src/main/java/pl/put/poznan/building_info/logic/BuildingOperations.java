@@ -49,9 +49,7 @@ public class BuildingOperations{
     }
 
 
-    /**
-     * Creates new data 
-     */
+//Creates new data 
     public ArrayList<Building> createSomeData(){
         Random generator = new Random();
         ArrayList<Building> buildingCreator = new ArrayList<Building>();
@@ -196,10 +194,10 @@ public class BuildingOperations{
     }
 
     /*************          TODO          *************/
-    /** 
-     * PrzykĹ‚ad funkcji przyjmujÄ…cej kolekcje obiektĂłe
-     * Powinna zwrĂłciÄ‡ Ĺ‚Ä…cznÄ… powierzchniÄ™ dla kaĹĽdego obiektu w kolekcji
-     * Nie wiem do koĹ„ca w jakÄ… klasÄ™ zamknÄ…Ä‡ wynik bo trzeba to zwrĂłciÄ‡ jako JSON
+    /*
+     PrzykĹ‚ad funkcji przyjmujÄ…cej kolekcje obiektĂłe
+     Powinna zwrĂłciÄ‡ Ĺ‚Ä…cznÄ… powierzchniÄ™ dla kaĹĽdego obiektu w kolekcji
+     Nie wiem do koĹ„ca w jakÄ… klasÄ™ zamknÄ…Ä‡ wynik bo trzeba to zwrĂłciÄ‡ jako JSON
     */
 //Calculate the total area of a building with an id passed as a parameter
 

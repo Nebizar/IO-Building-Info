@@ -33,7 +33,7 @@ public class Room extends Location{
      *
      * @param id- unikalna wartosc opisujaca pomieszczenie
      * @param name-nazwa obiektu
-     * dziedziczone z klasy location
+     * dziedziczone z klasy Location
      */
     public Room(int id, String name, float length, float width, float height, float heating, float lightPower, float rent){
         super(id, name, "Room");
@@ -48,7 +48,7 @@ public class Room extends Location{
     }
 
     /**
-     * <p>Funkcja określająca typ lokalizacji jako Room</p>
+     * <p>Funkcja okreslajaca typ lokalizacji jako Room</p>
      */
     @Override
     public boolean isRoom(){
@@ -56,7 +56,7 @@ public class Room extends Location{
     }
 
     /**
-     * <p>Zwraca zużycie energii na ogrzewanie pokoju</p>
+     * <p>Zwraca zuzycie energii na ogrzewanie pokoju</p>
      */
     @Override
     public float getHeating() {
@@ -64,7 +64,7 @@ public class Room extends Location{
     }
     
     /**
-     * <p>Zwraca kubaturę pokoju</p>
+     * <p>Zwraca kubature pokoju</p>
      */
     @Override
     public float getCube() {
@@ -72,7 +72,7 @@ public class Room extends Location{
     }
 
     /**
-     * <p>Zwraca powierzchnię pomieszczenia</p>
+     * <p>Zwraca powierzchnie pomieszczenia</p>
      */
     @Override
     public float getArea() {
@@ -80,7 +80,7 @@ public class Room extends Location{
     }
     
     /**
-     * <p>Zwraca moc oświetlenia dla całego pomieszczenia</p>
+     * <p>Zwraca moc oswietlenia dla calego pomieszczenia</p>
      */
     @Override
     public float getLightPower() {
@@ -88,7 +88,7 @@ public class Room extends Location{
     }
 
     /**
-     * <p>Zwraca cenę wynajmu pomieszczenia</p>
+     * <p>Zwraca cene wynajmu pomieszczenia</p>
      */
     @Override
     public float getRent() {
@@ -96,7 +96,7 @@ public class Room extends Location{
     }
 
     /**
-     * <p>Zwraca lokacje wewnątrz pomieszczenia</p>
+     * <p>Zwraca lokacje wewnatrz pomieszczenia</p>
      */
     @Override
     public ArrayList<Location> getLocations() {
@@ -104,11 +104,8 @@ public class Room extends Location{
     }
 
     /**
-     * <p>
-     * Zwraca referencję na siebie jeżeli ID pokoju jest równe szukanemu ID,
-     * null w innym przypadku
-     * </p>
      * @param ID - szukane ID
+     * referencje na siebie jezeli ID pomiesczenia jest rowne szukanemu ID, null w przeciwnym wypadku
      */
     @Override
     public Location getEntityByID(int ID) {
@@ -120,11 +117,8 @@ public class Room extends Location{
 	}
 
     /**
-     * <p>
-     * Zwraca referencję na siebie jako listę jednoelementową jeżeli ID pokoju jest równe szukanemu ID,
-     * lista pusta w innym przypadku
-     * </p>
-     * @param ID - szukane ID
+     * @param IDs - szukane ID
+     * @return referencje na siebie jako liste jednoelementowa jezeli istnieje pomieszczenie o szukanym ID, liste pusta w przeciwnym wypadku
      */
 	@Override
 	public ArrayList<Location> getEntitiesByIDs(ArrayList<Integer> IDs) {

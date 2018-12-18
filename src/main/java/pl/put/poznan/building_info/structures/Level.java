@@ -1,10 +1,10 @@
 package pl.put.poznan.building_info.structures;
-/** Klasa reprezentujaca poziom budynku. Zawiera podstawowe informacje o obiekcie. Dziedziczy z klasy Location
+/** Klasa reprezentujaca poziom budynku. Zawiera podstawowe informacje o obiekcie. Dziedziczy z klasy LocationGroup
  * @since 0.1
  */
 
 import java.util.ArrayList;
-import java.util.List;
+//import java.util.List;
 
 public class Level extends LocationGroup{
 
@@ -14,15 +14,15 @@ public class Level extends LocationGroup{
      *
      * @param id- unikalna wartosc opisujaca pomieszczenie
      * @param name-nazwa obiektu
-     * dziedziczone z klasy location
+     * dziedziczone z klasy LocationGroup
      */
-
     public Level(int id, String name){
         super(id, name, "Level");
     }
 
     /**
-     * <p>Dodaje nową lokacje klasy Room do obiektu</p>
+     * <p>Dodaje do listy pomieszczen dla poziomu nowy obiekt klasy Room</p>
+     * @param newRoom - dodawany obiekt
      */
     @Override
     public void addRoom(Room newRoom){
@@ -30,7 +30,7 @@ public class Level extends LocationGroup{
     }
     
     /**
-     * <p>Funkcja określająca typ lokalizacji jako Level</p>
+     * <p>Funkcja okreslajaca typ lokalizacji jako Level</p>
      */
     @Override
     public boolean isLevel(){
@@ -38,7 +38,7 @@ public class Level extends LocationGroup{
     }
 
     /**
-     * <p>Zwraca wszystkie obiekty typu Room zawierające się w obiekcie</p>
+     * <p>Zwraca wszystkie obiekty typu Room wchodzace w sklad poziomu</p>
      * @return Lista pokoi
      */
     public ArrayList<Room> getRooms(){

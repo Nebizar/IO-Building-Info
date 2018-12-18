@@ -22,7 +22,7 @@ public abstract class Location{
     private String type;
     
     /**
-     * <p>Konstruktor tworzacy obiekt wraz z informacja o nazwie i identyfikatorze</p>
+     * <p>Konstruktor tworzacy obiekt wraz z informacja o nazwie, identyfikatorze i typie obiektu</p>
      */
     public Location(int id, String name, String type){
         this.ID = id;
@@ -31,7 +31,7 @@ public abstract class Location{
     }
 
     /**
-     * <p>Zwraca nazwę lokacji</p>
+     * <p>Zwraca nazwe lokacji</p>
      * @return nazwa lokacji
      */
     public String getName(){
@@ -78,38 +78,38 @@ public abstract class Location{
     }
 
     /**
-     * <p>Funkcja sprawdzająca czy lokacja jest budynkiem</p>
-     * @return wartość true/false
+     * <p>Funkcja sprawdzajaca czy lokacja jest budynkiem</p>
+     * @return wartosc true/false
      */
     public boolean isBuilding(){
         return false;
     }
 
     /**
-     * <p>Funkcja sprawdzająca czy lokacja jest poziomem</p>
-     * @return wartość true/false
+     * <p>Funkcja sprawdzajaca czy lokacja jest poziomem</p>
+     * @return wartosc true/false
      */
     public boolean isLevel(){
         return false;
     }
 
     /**
-     * <p>Funkcja sprawdzająca czy lokacja jest pokojem</p>
-     * @return wartość true/false
+     * <p>Funkcja sprawdzajaca czy lokacja jest pokojem</p>
+     * @return wartosc true/false
      */
     public boolean isRoom(){
         return false;
     }
 
     /**
-     * <p>Funkcja zwracająca wszystkie lokacja zawarte w lokacji</p>
+     * <p>Funkcja zwracajaca wszystkie lokacja zawarte w lokacji</p>
      * @return - Lista lokacji
      */
     public abstract ArrayList<Location> getLocations();
 
     /**
-     * <p>Zwraca zyżycie energii na ogrzewanie całej lokacji (wraz z elementami wewnąrz)</p>
-     * @return - zużycie energii
+     * <p>Zwraca zyzycie energii na ogrzewanie calej lokacji (wraz z elementami wewnatrz)</p>
+     * @return - zuzycie energii
      */
     public abstract float getHeating();
     

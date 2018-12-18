@@ -14,6 +14,8 @@ public class Result{
 
     /**
      * <p>Konstruktor tworzacy obiekt Result wraz z podstawowymi informacjami o nim</p>
+     	* @param feedback - wartosc podstawiamy pod feedback
+	 	* @param code - wartosc podstawiamy pod code
      */
     public Result(String feedback, int code){
         this.feedback = feedback;

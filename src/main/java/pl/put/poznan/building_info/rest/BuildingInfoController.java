@@ -28,7 +28,7 @@ public class BuildingInfoController {
      * Creates and saves building object based on JSON data
      * Creates new, unique ID for each location copied from JSON data
      param newBuilding JSON format building object
-     return JSON response
+     @return JSON response
      */
     @RequestMapping(value = "/building/new/", method = RequestMethod.POST, produces = "application/json")
     public String createBuilding(@RequestBody String newBuilding) {
@@ -44,7 +44,7 @@ public class BuildingInfoController {
      * searches and shows an element with ID = locationId if locationId is sent
      * show each element if the locationId isn't sent
      * param locationId    
-     * return location/locations in JSON format
+     * @return location/locations in JSON format
      */
     @RequestMapping(value = "/building", method = RequestMethod.GET, produces = "application/json")
     public String getEntity(@RequestParam(value = "id", required = false) String locationId) {
@@ -91,7 +91,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the area of a room
      * param id- room's id
-     * return area of a room in json format
+     * @return area of a room in json format
      */
     @RequestMapping(value = "/roomArea", method = RequestMethod.GET, produces = "application/json")
     public String roomArea(@RequestParam(value = "id", required = true) String roomId) {
@@ -116,7 +116,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the area of a level
      * param id- level's id
-     * return area of a level in json format
+     * @return area of a level in json format
      */
     @RequestMapping(value = "/levelArea", method = RequestMethod.GET, produces = "application/json")
     public String levelArea(@RequestParam(value = "id", required = true) String levelId) {
@@ -141,7 +141,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the area of a building
      * param id- level's id
-     * return area of a building in json format
+     * @return area of a building in json format
      */
     @RequestMapping(value = "/buildingArea", method = RequestMethod.GET, produces = "application/json")
     public String buildingArea(@RequestParam(value = "id", required = true) String buildingId) {
@@ -167,7 +167,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the cube of a building
      * param id- building's id
-     * return the cube of a building in json format
+     * @return the cube of a building in json format
      */
     @RequestMapping(value = "/buildingCube", method = RequestMethod.GET, produces = "application/json")
     public String buildingCube(@RequestParam(value = "id", required = true) String buildingId) {
@@ -195,7 +195,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the cube of a level
      * param id- level's id
-     * return the cube of a level in json format
+     * @return the cube of a level in json format
      */
     @RequestMapping(value = "/levelCube", method = RequestMethod.GET, produces = "application/json")
     public String levelCube(@RequestParam(value = "id", required = true) String levelId) {
@@ -223,7 +223,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the cube of a room
      * param id- room's id
-     * return the cube of a room in json format
+     * @return the cube of a room in json format
      */
     @RequestMapping(value = "/roomCube", method = RequestMethod.GET, produces = "application/json")
     public String roomCube(@RequestParam(value = "id", required = true) String roomId) {
@@ -251,7 +251,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the power per square meter of a room
      * param id- room's id
-     * return power per square of a room in json format
+     * @return power per square of a room in json format
      */
     @RequestMapping(value = "/roomPowerPerSquare", method = RequestMethod.GET, produces = "application/json")
     public String roomPowerPerSquare(@RequestParam(value = "id", required = true) String roomId) {
@@ -279,7 +279,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the average power per square meter of a level
      * param id- level's id
-     * return average power per square of a level in json format
+     * @return average power per square of a level in json format
      */
     @RequestMapping(value = "/levelPowerPerSquare", method = RequestMethod.GET, produces = "application/json")
     public String levelPowerPerSquare(@RequestParam(value = "id", required = true) String levelId) {
@@ -307,7 +307,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the average power per square meter of a building
      * param id- level's id
-     * return average power per square of a building in json format
+     * @return average power per square of a building in json format
      */
     @RequestMapping(value = "/buildingPowerPerSquare", method = RequestMethod.GET, produces = "application/json")
     public String buildingPowerPerSquare(@RequestParam(value = "id", required = true) String buildingId) {
@@ -335,7 +335,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the avarage heating per cube of a room
      * param id- room's id
-     * return avarage heating per cube of a room in json format
+     * @return avarage heating per cube of a room in json format
      */
     @RequestMapping(value = "/roomHeatingPerCube", method = RequestMethod.GET, produces = "application/json")
     public String roomHeatingPerCube(@RequestParam(value = "id", required = true) String roomId) {
@@ -360,7 +360,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the avarage heating per cube of a level
      * param id- level's id
-     * return avarage heating per cube of a level in json format
+     * @return avarage heating per cube of a level in json format
      */
     @RequestMapping(value = "/levelHeatingPerCube", method = RequestMethod.GET, produces = "application/json")
     public String levelHeatingPerCube(@RequestParam(value = "id", required = true) String levelId) {
@@ -385,7 +385,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the avarage heating per cube of a building
      *param id- level's id
-     * return avarage heating per cube of a building in json format
+     * @return avarage heating per cube of a building in json format
      */
     @RequestMapping(value = "/buildingHeatingPerCube", method = RequestMethod.GET, produces = "application/json")
     public String buildingHeatingPerCube(@RequestParam(value = "id", required = true) String buildingId) {
@@ -410,7 +410,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the rent of a room
      * param id- room's id
-     * return rent of a room in json format
+     * @return rent of a room in json format
      */
     @RequestMapping(value = "/roomRent", method = RequestMethod.GET, produces = "application/json")
     public String roomRent(@RequestParam(value = "id", required = true) String roomId) {
@@ -435,7 +435,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the rent of a level
      * param id- level's id
-     * return rent of a level in json format
+     * @return rent of a level in json format
      */
     @RequestMapping(value = "/levelRent", method = RequestMethod.GET, produces = "application/json")
     public String levelRent(@RequestParam(value = "id", required = true) String levelId) {
@@ -460,7 +460,7 @@ public class BuildingInfoController {
     /** 
      * Calculates and shows the area of a building
      * param id- level's id
-     * return area of a building in json format
+     * @return area of a building in json format
      */
     @RequestMapping(value = "/buildingRent", method = RequestMethod.GET, produces = "application/json")
     public String buildingRent(@RequestParam(value = "id", required = true) String buildingId) {

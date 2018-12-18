@@ -12,6 +12,8 @@ pl\put\poznan\building_info\rest\BuildingInfoController.class
 pl\put\poznan\building_info\rest\BuildingInfoController$13.class
 pl\put\poznan\building_info\structures\Room.class
 pl\put\poznan\building_info\rest\BuildingInfoController$5.class
+pl\put\poznan\building_info\logic\BuildingOperations.class
+pl\put\poznan\building_info\structures\Collection.class
 pl\put\poznan\building_info\rest\BuildingInfoController$6.class
 pl\put\poznan\building_info\rest\BuildingInfoController$4.class
 pl\put\poznan\building_info\structures\Value.class

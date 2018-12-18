@@ -150,6 +150,7 @@ public class BuildingOperationsTest {
     //CUBE TESTS
     @Test
     public void getBuildingCubeTest() {
+        
     	result = boMocked.getBuildingCube(0);
     	verify(levelMock, times(5)).getCube();
     	assertEquals(25, result.getValue());

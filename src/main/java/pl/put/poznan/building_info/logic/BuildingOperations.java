@@ -105,25 +105,19 @@ public class BuildingOperations{
     public Collection getLocationsByIDs(ArrayList<Integer> IDs){
         Collection found = new Collection();
 
-        for (Building building : buildings){
-            if(contains(IDs, building.getID())){
-                found.insertBuilding(building);
+        ArrayList<Location> collected = locations.getEntitiesByIDs(IDs);
+        for(Location c:collected){
+            if(c.isBuilding()){
+                found.insertBuilding((Building) c);
             }
-
-            for (Level level : building.getLevels()) {
-                if(contains(IDs, level.getID())){
-                    found.insertLevel(level);
-                }
-    
-                for (Room room : level.getRooms()) {
-                    if(contains(IDs, room.getID())){
-                        found.insertRoom(room);
-                    }
-                }
+            if(c.isLevel()){
+                found.insertLevel((Level) c);
+            }
+            if(c.isRoom()){
+                found.insertRoom((Room) c);
             }
         }
-        
-
+    
         return found;
     }
 
@@ -158,13 +152,15 @@ public class BuildingOperations{
 //Find a building by id visible for user or a special error building
 
     public Building findBuildingByID(int id) {
+        System.out.println("-----------------------------------------");
+
     	for(Building building: buildings) {
     		if(building.getID()==id) {
     			return building;
     		}
     	}
     	Building error=new Building(-1,"Error");
-    	return error;
+        return error;
     }
 
 //Find a level by id visible for user or a special error level
@@ -206,231 +202,188 @@ public class BuildingOperations{
 //Calculate the total area of a building with an id passed as a parameter
 
     public Value getBuildingArea(Integer id){
-
-
-        /* TAK TO BYŁO
-        float area=0;
-    	Building building=findBuildingByID(id);
-    	if(building.getID()==-1){
-    		Value value=new Value("ERROR! That is not a building ID!",id,-1);
-    		return value;
-    	}
-    	
-        for (Level level : building.getLevels()) {
-    
-            	 area += level.getArea();
-        }
-        Value value=new Value("BuildingArea", id, area);
-        return value;
-        */
-
-        /*
-        Dodana jest nowa prywatna zmienna locations - zawiera wszsytkie elementy 
-        Dla tego zmiennej możesz wykonać locations.getEntityByID(id)
-        - Znajduje element / zwraca null jeżeli nie istnieje
-        - Możesz sprawdzić typ elementu .isBuilding() / .isLevel() / .isRoom()
-        - Możesz wykonać na elemencie operacje:
-            - getHeating();
-            - getCube();
-            - getArea();
-            - getLightPower();
-            - getRent();
-            Niezależnie od tego czy jest to Room, Level czy Building zostaje zwrócona wartość (lub suma wartości wewnątrz)
-        */
-
         Location found = locations.getEntityByID(id);
+        Value value;
         if(found == null){
-            Value value=new Value("ERROR! Can't find ID", id, -1);
-    		return value;
+            value=new Value("ERROR! Can't find ID", id, -1);		
         }else{
             if(found.isBuilding()){
-                Value value=new Value("BuildingArea", id, found.getArea());
-                return value;
+                value=new Value("BuildingArea", id, found.getArea());
             }else{
-                Value value=new Value("ERROR! That is not a building ID!", id, -1);
-    		    return value;
+                value=new Value("ERROR! That is not a building ID!", id, -1);
             }
         }
-
-        
+        return value;
     }
     
 //Calculate the total area of a level with an id passed as a parameter
 
     public Value getLevelArea(Integer id){
-    	float area=0;
-    	
-    	Level level=findLevelByID(id);
-    	if(level.getID()==-1){
-    		Value value=new Value("ERROR! That is not a level ID!",id,-1);
-    		return value;
-    	}
-    	
-    	 else{
-             area=level.getArea();
-             Value value=new Value("LevelArea",id,area);
-             return value;
-    	 }
+    	Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isLevel()){
+                value=new Value("LevelArea", id, found.getArea());
+            }else{
+                value=new Value("ERROR! That is not a Level ID!", id, -1);
+            }
+        }
+        return value;
     }
     
 //Calculate the total cube of a room with an id passed as a parameter
 
-        public Value getRoomArea(Integer id){
-        	Room room=findRoomByID(id);
-        	if(room.getID()==-1){
-        		Value value=new Value("ERROR! That is not a room ID!",id,-1);
-        		return value;
-        	}
-            else{
-                float area=room.getArea();
-                Value value=new Value("RoomArea",id,area);
-                return value;
+    public Value getRoomArea(Integer id){
+        Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isRoom()){
+                value=new Value("RoomArea", id, found.getArea());
+            }else{
+                value=new Value("ERROR! That is not a Room ID!", id, -1);
             }
         }
+        return value;
+    }
     
 //Calculate the total cube of a building with an id passed as a parameter
 
     public Value getBuildingCube(Integer id){
-    	float cube=0;
-    	
-    	Building building=findBuildingByID(id);
-    	if(building.getID()==-1){
-    		Value value=new Value("ERROR! That is not a building ID!",id,-1);
-    		return value;
-    	}
-    	
-        for (Level level : building.getLevels()) {
-
-            	 cube+=level.getCube();
+        
+    	Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isBuilding()){
+                value=new Value("BuildingCube", id, found.getCube());
+            }else{
+                value=new Value("ERROR! That is not a building ID!", id, -1);
+            }
         }
-        Value value=new Value("BuildingCube",id,cube);
         return value;
     }
     
 //Calculate the total cube of a level with an id passed as a parameter
 
     public Value getLevelCube(Integer id){
-    	float cube=0;
-    	
-    	Level level=findLevelByID(id);
-    	if(level.getID()==-1){
-    		Value value=new Value("ERROR! That is not a level ID!",id,-1);
-    		return value;
-    	}
-    	
-    	cube=level.getCube();
-        Value value=new Value("LevelCube",id,cube);
+    	Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isLevel()){
+                value=new Value("LevelCube", id, found.getCube());
+            }else{
+                value=new Value("ERROR! That is not a Level ID!", id, -1);
+            }
+        }
         return value;
     }
     
 //Calculate the total cube of a room with an id passed as a parameter
 
     public Value getRoomCube(Integer id){
-    	float cube=0;
-    	
-    	Room room=findRoomByID(id);
-    	if(room.getID()==-1){
-    		Value value=new Value("ERROR! That is not a room ID!",id,-1);
-    		return value;
-    	}
-    	
-        cube=room.getCube();
-        Value value=new Value("RoomCube",id,cube);
+    	Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isRoom()){
+                value=new Value("RoomCube", id, found.getCube());
+            }else{
+                value=new Value("ERROR! That is not a Room ID!", id, -1);
+            }
+        }
         return value;
     }
     
 //Calculate the power per square meter of a room with an id passed as a parameter
 
     public Value getRoomPowerPerSquare(Integer id){
-    	float powerPerSquare=0;
-    	
-    	Room room=findRoomByID(id);
-    	if(room.getID()==-1){
-    		Value value=new Value("ERROR! That is not a room ID!",id,-1);
-    		return value;
-    	}
-    	
-        powerPerSquare=room.getLightPower()/room.getArea();
-        Value value=new Value("RoomPowerPerSquare",id,powerPerSquare);
+        Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isRoom()){
+                value=new Value("RoomPowerPerSquare", id, found.getLightPower()/found.getArea());
+            }else{
+                value=new Value("ERROR! That is not a Room ID!", id, -1);
+            }
+        }
         return value;
     }
     
 //Calculate the average power per square meter of a level with an id passed as a parameter
 
     public Value getLevelPowerPerSquare(Integer id){
-    	float powerPerSquare=0;
-    	float power=0;
-    	int count=0;
-    	float val=0;
-    	
-    	Level level=findLevelByID(id);
-    	if(level.getID()==-1){
-    		Value value=new Value("ERROR! That is not a level ID!",id,-1);
-    		return value;
-    	}
-
-        powerPerSquare=level.getLightPower()/level.getArea();
-        Value value=new Value("LevelPowerPerSquare",id,powerPerSquare);
+    	Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isLevel()){
+                value=new Value("LevelPowerPerSquare", id, found.getLightPower()/found.getArea());
+            }else{
+                value=new Value("ERROR! That is not a Level ID!", id, -1);
+            }
+        }
         return value;
     }
     
 // Calculate the average power per square meter of a building with an id passed as a parameter
 
     public Value getBuildingPowerPerSquare(Integer id){
-    	float powerPerSquare=0;
-    	float power=0;
-    	int count=0;
-    	int levelCount=0;
-    	float val=0;
-    	float powerPerLevel=0;
-    	
-    	Building building=findBuildingByID(id);
-    	if(building.getID()==-1){
-    		Value value=new Value("ERROR! That is not a building ID!",id,-1);
-    		return value;
-    	}
-    	
-        for (Level level : building.getLevels()) {
-    
-            power+=level.getLightPower();
-            count+=level.getArea();
+    	Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isBuilding()){
+                value=new Value("BuildingPowerPerSquare", id, found.getLightPower()/found.getArea());
+            }else{
+                value=new Value("ERROR! That is not a Building ID!", id, -1);
+            }
         }
-        
-        powerPerSquare=power/count;
-        Value value=new Value("BuildingPowerPerSquare",id,powerPerSquare);
         return value;
     }
     
 // Calculate the avarage heating per cube of a room with an id passed as a parameter
 
     public Value getRoomHeatPerCube(Integer id){
-    	Room room=findRoomByID(id);
-    	if(room.getID()==-1){
-    		Value value=new Value("ERROR! That is not a room ID!",id,-1);
-    		return value;
-    	}
-    	
-        float heatPerCube=room.getHeating()/room.getCube();
-        Value value=new Value("RoomHeatPerCube",id,heatPerCube);
+        Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isRoom()){
+                value=new Value("RoomHeatPerCube", id, found.getHeating()/found.getCube());
+            }else{
+                value=new Value("ERROR! That is not a Room ID!", id, -1);
+            }
+        }
         return value;
     }
     
      //Calculate the average heating per cube of a level with an id passed as a parameter
 
     public Value getLevelHeatPerCube(Integer id){
-    	float heatPerCube=0;
-    	float heating=0;
-    	int count=0;
-    	float val=0;
-    	
-    	Level level=findLevelByID(id);
-    	if(level.getID()==-1){
-    		Value value=new Value("ERROR! That is not a level ID!",id,-1);
-    		return value;
-    	}
-        
-        heatPerCube=level.getHeating()/level.getCube();
-        Value value=new Value("LevelHeatPerCube",id,heatPerCube);
+    	Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isLevel()){
+                value=new Value("LevelHeatPerCube", id, found.getHeating()/found.getCube());
+            }else{
+                value=new Value("ERROR! That is not a Level ID!", id, -1);
+            }
+        }
         return value;
     }
     
@@ -438,79 +391,68 @@ public class BuildingOperations{
      //Calculate the average heating per cube meter of a building with an id passed as a parameter
 
     public Value getBuildingHeatPerCube(Integer id){
-    	float heatPerCube=0;
-    	float heating=0;
-    	int count=0;
-    	int levelCount=0;
-    	float val=0;
-    	float heatPerLevel=0;
-    	
-    	Building building=findBuildingByID(id);
-    	if(building.getID()==-1){
-    		Value value=new Value("ERROR! That is not a building ID!",id,-1);
-    		return value;
-    	}
-    	
-        for (Level level : building.getLevels()) {
-    
-             heating+=level.getHeating();
-             count+=level.getCube();  
+    	Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isBuilding()){
+                value=new Value("BuildingHeatPerCube", id, found.getHeating()/found.getCube());
+            }else{
+                value=new Value("ERROR! That is not a Building ID!", id, -1);
+            }
         }
-        
-        heatPerCube=heating/count;
-        Value value=new Value("BuildingHeatPerCube",id,heatPerCube);
         return value;
     }
     
   //Calculate the total rent of a building with an id passed as a parameter
 
     public Value getBuildingRent(Integer id){
-    	float rent=0;
-    	
-    	Building building=findBuildingByID(id);
-    	if(building.getID()==-1){
-    		Value value=new Value("ERROR! That is not a building ID!",id,-1);
-    		return value;
-    	}
-    	
-        for (Level level : building.getLevels()) {
-    
-            	 rent += level.getRent();
+        Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isBuilding()){
+                value=new Value("BuildingRent", id, found.getRent());
+            }else{
+                value=new Value("ERROR! That is not a Building ID!", id, -1);
+            }
         }
-        Value value=new Value("BuildingRent",id,rent);
         return value;
     }
     
   //Calculate the total rent of a level with an id passed as a parameter
 
     public Value getLevelRent(Integer id){
-    	float rent=0;
-    	
-    	Level level=findLevelByID(id);
-    	if(level.getID()==-1){
-    		Value value=new Value("ERROR! That is not a level ID!",id,-1);
-    		return value;
-    	}
-    	
-    	 else{
-             rent=level.getRent();
-             Value value=new Value("LevelRent",id,rent);
-             return value;
-    	 }
+    	Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isLevel()){
+                value=new Value("LevelRent", id, found.getRent());
+            }else{
+                value=new Value("ERROR! That is not a Level ID!", id, -1);
+            }
+        }
+        return value;
     }
     
   //Calculate the total rent of a room with an id passed as a parameter
 
     public Value getRoomRent(Integer id){
-    	Room room=findRoomByID(id);
-    	if(room.getID()==-1){
-    		Value value=new Value("ERROR! That is not a room ID!",id,-1);
-    		return value;
-    	}
-        else{
-            float rent=room.getRent();
-            Value value=new Value("RoomRent",id,rent);
-            return value;
+    	Location found = locations.getEntityByID(id);
+        Value value;
+        if(found == null){
+            value=new Value("ERROR! Can't find ID", id, -1);		
+        }else{
+            if(found.isRoom()){
+                value=new Value("RoomRent", id, found.getRent());
+            }else{
+                value=new Value("ERROR! That is not a Room ID!", id, -1);
+            }
         }
+        return value;
     }
 }

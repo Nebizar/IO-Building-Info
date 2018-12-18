@@ -43,6 +43,10 @@ public class BuildingOperations{
             locations.addBuilding(b);
         }
     }
+    
+    public void setLocations(allLocations param) {
+    	locations = param;
+    }
 
 
     /**

@@ -1,4 +1,5 @@
 pl\put\poznan\building_info\rest\BuildingInfoController$12.class
+pl\put\poznan\building_info\structures\LocationGroup.class
 pl\put\poznan\building_info\info\Result.class
 pl\put\poznan\building_info\rest\BuildingInfoController$7.class
 pl\put\poznan\building_info\rest\BuildingInfoController$3.class
@@ -16,6 +17,7 @@ pl\put\poznan\building_info\rest\BuildingInfoController$4.class
 pl\put\poznan\building_info\structures\Value.class
 pl\put\poznan\building_info\app\BuildingInfoApplication.class
 pl\put\poznan\building_info\rest\BuildingInfoController$16.class
+pl\put\poznan\building_info\structures\allLocations.class
 pl\put\poznan\building_info\rest\BuildingInfoController$11.class
 pl\put\poznan\building_info\structures\Level.class
 pl\put\poznan\building_info\structures\Building.class

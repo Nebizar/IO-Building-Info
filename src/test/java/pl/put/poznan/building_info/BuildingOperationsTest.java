@@ -10,77 +10,68 @@ import pl.put.poznan.building_info.structures.Location;
 import pl.put.poznan.building_info.structures.Room;
 import pl.put.poznan.building_info.structures.Building;
 import pl.put.poznan.building_info.structures.Level;
-import pl.put.poznan.building_info.structures.Collection;
 import pl.put.poznan.building_info.structures.Value;
-import pl.put.poznan.building_info.info.Result;
+import pl.put.poznan.building_info.structures.allLocations;
 import pl.put.poznan.building_info.logic.BuildingOperations;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BuildingOperationsTest {
 	
 	public static BuildingOperations bo;
 	public static BuildingOperations boMocked;
-	public static BuildingOperations boMockedRooms;
+	public static BuildingOperations boMocked2;
+	public static BuildingOperations boMocked3;
 	public static Value result;
-	public static Level levelMock;
-	public static Room roomMock;
+	public static allLocations allLocationsMock;
+	public static allLocations allLocationsMockLevel;
+	public static allLocations allLocationsMockRoom;
+	public static Location locationMock;
+	public static Location locationMockLevel;
+	public static Location locationMockRoom;
+	
 	
 	@BeforeAll
 	public static void initialize() {
-		ArrayList<Building> buildingData = new ArrayList<Building>();
-		ArrayList<Building> buildingDataRoom = new ArrayList<Building>();
 		
-		//Mocking Level object and its methods
-        levelMock = mock(Level.class);
-    	when(levelMock.getArea()).thenReturn((float)10.0);
-    	when(levelMock.getCube()).thenReturn((float)5.0);
-    	when(levelMock.getHeating()).thenReturn((float)20.0);
-    	when(levelMock.getLightPower()).thenReturn((float)50.0);
-    	when(levelMock.getRent()).thenReturn((float)100.0);
-    	//Mocking room object and its methods
-    	roomMock = mock(Room.class);
-        when(roomMock.getArea()).thenReturn((float)5.0);
-        when(roomMock.getCube()).thenReturn((float)10.0);
-        when(roomMock.getHeating()).thenReturn((float)15.0);
-        when(roomMock.getLightPower()).thenReturn((float)20.0);
-        when(roomMock.getRent()).thenReturn((float)25.0);
-        when(roomMock.getID()).thenReturn(3);
+		bo = new BuildingOperations();
+		boMocked = new BuildingOperations();
+		boMocked2 = new BuildingOperations();
+		boMocked3 = new BuildingOperations();
+		//Building Mock
+		locationMock = mock(Location.class);
+		when(locationMock.isBuilding()).thenReturn(true);
+		when(locationMock.getArea()).thenReturn((float)5.0);
+		when(locationMock.getCube()).thenReturn((float)10.0);
+		when(locationMock.getRent()).thenReturn((float)15.0);
+		when(locationMock.getLightPower()).thenReturn((float)20.0);
+		when(locationMock.getHeating()).thenReturn((float)25.0);
 		
-		int currentID = 0;
+		allLocationsMock = mock(allLocations.class);
+		when(allLocationsMock.getEntityByID(0)).thenReturn(locationMock);
+		boMocked.setLocations(allLocationsMock);
+		//Level Mock
+		locationMockLevel = mock(Location.class);
+		when(locationMockLevel.isLevel()).thenReturn(true);
+		when(locationMockLevel.getArea()).thenReturn((float)5.0);
+		when(locationMockLevel.getCube()).thenReturn((float)10.0);
+		when(locationMockLevel.getRent()).thenReturn((float)15.0);
+		when(locationMockLevel.getLightPower()).thenReturn((float)20.0);
+		when(locationMockLevel.getHeating()).thenReturn((float)25.0);
 		
-        //basic test data creation for building computation
-        Building building = new Building(currentID, "Building");
-        currentID ++;
-        buildingData.add(building);
-    	//Adding 5 same Mocked Level objects
-    	for(int i = 0;i < 5;i++) {
-    		building.addLevel(levelMock);
-    	}
-    	//create normal Objects
-    	boMocked = new BuildingOperations();
-		boMocked.setBuildings(buildingData);
-		//END #1 Object
+		allLocationsMockLevel = mock(allLocations.class);
+		when(allLocationsMockLevel.getEntityByID(1)).thenReturn(locationMockLevel);
+		boMocked2.setLocations(allLocationsMockLevel);
+		//Room Mock
+		locationMockRoom = mock(Location.class);
+		when(locationMockRoom.isRoom()).thenReturn(true);
+		when(locationMockRoom.getArea()).thenReturn((float)5.0);
+		when(locationMockRoom.getCube()).thenReturn((float)10.0);
+		when(locationMockRoom.getRent()).thenReturn((float)15.0);
+		when(locationMockRoom.getLightPower()).thenReturn((float)20.0);
+		when(locationMockRoom.getHeating()).thenReturn((float)25.0);
 		
-		currentID = 0;
-		//Second BuildingOperations Object -> mocked Room objects
-        Building building2 = new Building(currentID, "Building");
-        currentID ++;
-        buildingDataRoom.add(building2);
-        //new level
-        Level level = new Level(currentID, "Level");
-        currentID ++;
-        //new mockRoom
-        for(int a = 0; a < 3; a++){
-        	level.addRoom(roomMock);
-        }
-        building2.addLevel(level); 
-		boMockedRooms = new BuildingOperations();
-		boMockedRooms.setBuildings(buildingDataRoom);
-        //END #2 Object
-		
-        bo = new BuildingOperations();
+		allLocationsMockRoom = mock(allLocations.class);
+		when(allLocationsMockRoom.getEntityByID(2)).thenReturn(locationMockRoom);
+		boMocked3.setLocations(allLocationsMockRoom);
 	}
 	//FIND BY ID TESTS
     @Test
@@ -129,21 +120,21 @@ public class BuildingOperationsTest {
     @Test
     public void getBuildingAreaTest() {
     	result = boMocked.getBuildingArea(0);
-    	verify(levelMock, times(5)).getArea();
-    	assertEquals(50, result.getValue());
+    	verify(locationMock, times(1)).getArea();
+    	assertEquals(5, result.getValue());
     }
     
     @Test
     public void getLevelAreaTest() {
-    	result = boMockedRooms.getLevelArea(1);
-    	verify(roomMock, times(3)).getArea();
-    	assertEquals(15, result.getValue());
+    	result = boMocked2.getLevelArea(1);
+    	verify(locationMockLevel, times(1)).getArea();
+    	assertEquals(5, result.getValue());
     }
     
     @Test
     public void getRoomAreaTest() {
-    	result = boMockedRooms.getRoomArea(3);
-    	verify(roomMock, times(5)).getArea();
+    	result = boMocked3.getRoomArea(2);
+    	verify(locationMockRoom, times(2)).getArea();
     	assertEquals(5, result.getValue());
     }
     //END AREA TESTS
@@ -152,21 +143,21 @@ public class BuildingOperationsTest {
     public void getBuildingCubeTest() {
         
     	result = boMocked.getBuildingCube(0);
-    	verify(levelMock, times(5)).getCube();
-    	assertEquals(25, result.getValue());
+    	verify(locationMock, times(1)).getCube();
+    	assertEquals(10, result.getValue());
     }
     
     @Test
     public void getLevelCubeTest() {
-    	result = boMockedRooms.getLevelCube(1);
-    	verify(roomMock, times(3)).getCube();
-    	assertEquals(30, result.getValue());
+    	result = boMocked2.getLevelCube(1);
+    	verify(locationMockLevel, times(1)).getCube();
+    	assertEquals(10, result.getValue());
     }
     
     @Test
     public void getRoomCubeTest() {
-    	result = boMockedRooms.getRoomCube(3);
-    	verify(roomMock, times(5)).getCube();
+    	result = boMocked3.getRoomCube(2);
+    	verify(locationMockRoom, times(2)).getCube();
     	assertEquals(10, result.getValue());
     }
     //END CUBE TESTS
@@ -174,46 +165,46 @@ public class BuildingOperationsTest {
     @Test
     public void getBuildingRentTest() {
     	result = boMocked.getBuildingRent(0);
-    	verify(levelMock, times(5)).getRent();
-    	assertEquals(500, result.getValue());
+    	verify(locationMock, times(1)).getRent();
+    	assertEquals(15, result.getValue());
     }
     
     @Test
     public void getLevelRentTest() {
-    	result = boMockedRooms.getLevelRent(1);
-    	verify(roomMock, times(3)).getRent();
-    	assertEquals(75, result.getValue());
+    	result = boMocked2.getLevelRent(1);
+    	verify(locationMockLevel, times(1)).getRent();
+    	assertEquals(15, result.getValue());
     }
     
     @Test
     public void getRoomRentTest() {
-    	result = boMockedRooms.getRoomRent(3);
-    	verify(roomMock, times(4)).getRent();
-    	assertEquals(25, result.getValue());
+    	result = boMocked3.getRoomRent(2);
+    	verify(locationMockRoom, times(1)).getRent();
+    	assertEquals(15, result.getValue());
     }
     //END RENT TESTS
     //POWER TESTS
     @Test
     public void getBuildingPowerPerSquareTest() {
     	result = boMocked.getBuildingPowerPerSquare(0);
-    	verify(levelMock, times(10)).getArea();
-    	verify(levelMock, times(5)).getLightPower();
-    	assertEquals(5, result.getValue());
+    	verify(locationMock, times(2)).getArea();
+    	verify(locationMock, times(1)).getLightPower();
+    	assertEquals(4, result.getValue());
     }
     
     @Test
     public void getLevelPowerPerSquareTest() {
-    	result = boMockedRooms.getLevelPowerPerSquare(1);
-    	verify(roomMock, times(5)).getArea();
-    	verify(roomMock, times(4)).getLightPower();
+    	result = boMocked2.getLevelPowerPerSquare(1);
+    	verify(locationMockLevel, times(2)).getArea();
+    	verify(locationMockLevel, times(1)).getLightPower();
     	assertEquals(4, result.getValue());
     }
     
     @Test
     public void getRoomPowerPerSquareTest() {
-    	result = boMockedRooms.getRoomPowerPerSquare(3);
-    	verify(roomMock, times(4)).getArea();
-    	verify(roomMock, times(4)).getLightPower();
+    	result = boMocked3.getRoomPowerPerSquare(2);
+    	verify(locationMockRoom, times(1)).getArea();
+    	verify(locationMockRoom, times(1)).getLightPower();
     	assertEquals(4, result.getValue());
     }
     //END POWER TESTS
@@ -221,25 +212,25 @@ public class BuildingOperationsTest {
     @Test
     public void getBuildingHeatPerCubeTest() {
     	result = boMocked.getBuildingHeatPerCube(0);
-    	verify(levelMock, times(10)).getCube();
-    	verify(levelMock, times(5)).getHeating();
-    	assertEquals(4, result.getValue());
+    	verify(locationMock, times(2)).getCube();
+    	verify(locationMock, times(1)).getHeating();
+    	assertEquals(2.5, result.getValue());
     }
     
     @Test
     public void getLevelHeatPerCubeTest() {
-    	result = boMockedRooms.getLevelHeatPerCube(1);
-    	verify(roomMock, times(3)).getCube();
-    	verify(roomMock, times(3)).getHeating();
-    	assertEquals(1.5, result.getValue());
+    	result = boMocked2.getLevelHeatPerCube(1);
+    	verify(locationMockLevel, times(2)).getCube();
+    	verify(locationMockLevel, times(1)).getHeating();
+    	assertEquals(2.5, result.getValue());
     }
     
     @Test
     public void getRoomHeatPerCubeTest() {
-    	result = boMockedRooms.getRoomHeatPerCube(3);
-    	verify(roomMock, times(4)).getCube();
-    	verify(roomMock, times(4)).getHeating();
-    	assertEquals(1.5, result.getValue());
+    	result = boMocked3.getRoomHeatPerCube(2);
+    	verify(locationMockRoom, times(1)).getCube();
+    	verify(locationMockRoom, times(1)).getHeating();
+    	assertEquals(2.5, result.getValue());
     }
     //END HEAT TESTS
 }

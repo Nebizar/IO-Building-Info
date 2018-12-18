@@ -1,5 +1,11 @@
 package pl.put.poznan.building_info.structures;
-/** Klasa reprezentujaca pomieszczenie budynku. Zawiera podstawowe informacje o pomieszczeniu.  Dziedziczy z klasy Location
+
+import java.util.ArrayList;
+
+/**
+ * Klasa reprezentujaca pomieszczenie budynku. Zawiera podstawowe informacje o
+ * pomieszczeniu. Dziedziczy z klasy Location
+ * 
  * @since 0.1
  */
 
@@ -30,7 +36,7 @@ public class Room extends Location{
      * dziedziczone z klasy location
      */
     public Room(int id, String name, float length, float width, float height, float heating, float lightPower, float rent){
-        super(id, name);
+        super(id, name, "Room");
         this.length = length;
         this.width = width;
         this.height = height;
@@ -41,23 +47,57 @@ public class Room extends Location{
         this.rent = rent;
     }
 
+    @Override
+    public boolean isRoom(){
+        return true;
+    }
+
+    @Override
     public float getHeating() {
         return heating;
     }
     
+    @Override
     public float getCube() {
     	return cube;
     }
 
+    @Override
     public float getArea() {
     	return area;
     }
     
+    @Override
     public float getLightPower() {
     	return lightPower;
     }
-    
+
+    @Override
     public float getRent() {
-    	return rent;
+        return rent;
     }
+
+    @Override
+    public ArrayList<Location> getLocations() {
+        return null;
+    }
+
+    @Override
+    public Location getEntityByID(int ID) {
+        if(this.getID() == ID){
+            return this;
+        }else{
+            return null;
+        }
+	}
+
+	@Override
+	public ArrayList<Location> getEntitiesByIDs(ArrayList<Integer> IDs) {
+        ArrayList<Location> result = new ArrayList<Location>();
+        if(IDs.contains(this.getID())){
+            result.add(this);
+        }
+
+        return result;
+	}
 }

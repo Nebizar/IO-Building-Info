@@ -7,6 +7,7 @@ import pl.put.poznan.building_info.structures.Building;
 import pl.put.poznan.building_info.structures.Level;
 import pl.put.poznan.building_info.structures.Collection;
 import pl.put.poznan.building_info.structures.Value;
+import pl.put.poznan.building_info.structures.allLocations;
 import pl.put.poznan.building_info.info.Result;
 import java.util.Random;
 
@@ -21,6 +22,7 @@ import java.lang.reflect.Type;
 public class BuildingOperations{
 
     private ArrayList<Building> buildings = new ArrayList<Building>();
+    private allLocations locations = new allLocations();
 
     /**
      * Each location has own unique ID, 
@@ -35,7 +37,11 @@ public class BuildingOperations{
     }
     
     public void setBuildings(ArrayList<Building> arr) {
-    	buildings = arr;
+        buildings = arr;
+        
+        for(Building b: arr){
+            locations.addBuilding(b);
+        }
     }
 
 
@@ -49,6 +55,7 @@ public class BuildingOperations{
         for(int k = 0; k < 2; k++){
             Building building = new Building(currentID, "Building");
             currentID ++;
+            locations.addBuilding(building);
             buildingCreator.add(building);
             for(int z = 0; z < 4; z++){
                 Level level = new Level(currentID, "Level");
@@ -85,6 +92,7 @@ public class BuildingOperations{
         }
 
         buildings.add(newBuilding);
+        locations.addBuilding(newBuilding);
         return new Result(Integer.toString(currentID - baseID) + " locations created", 0);
     }
 
@@ -210,7 +218,7 @@ public class BuildingOperations{
     
             	 area += level.getArea();
         }
-        Value value=new Value("BuildingArea",id,area);
+        Value value=new Value("BuildingArea", id, area);
         return value;
     }
     

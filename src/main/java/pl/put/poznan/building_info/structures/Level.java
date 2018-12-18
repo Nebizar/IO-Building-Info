@@ -6,22 +6,8 @@ package pl.put.poznan.building_info.structures;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Level extends Location{
+public class Level extends LocationGroup{
 
-	  /** <p>Podstawowe cechy obiektu:</p>
-	   * @param rooms - lista pomieszczen znajdujacych sie na tym poziomie
-	   * @param area - laczna powierzchnia poziomu
-	   * @param cube - laczna kubatura poziomu
-	   * @param heating - laczne zuzycie energii na ogrzewanie dla poziomu
-	   * @param lightPower - laczna moc oswietlenia dla poziomu
-	   * @param rent - cena za wynajecie pomieszczenia
-	   */
-    private ArrayList<Room> rooms = new ArrayList<Room>();
-    private float area;
-    private float cube;
-    private float heating;
-    private float lightPower;
-    private float rent;
     
     /**
      * <p>Konstruktor tworzacy poziom wraz z podstawowymi informacjami o nim</p>
@@ -29,76 +15,29 @@ public class Level extends Location{
      * @param id- unikalna wartosc opisujaca pomieszczenie
      * @param name-nazwa obiektu
      * dziedziczone z klasy location
-     * oblicza parametry dla poziomu sumujac dane elementy dla wszystkich pomieszczen znajdujacych sie na danym poziomie
      */
-    public Level(int id, String name){
-        super(id, name);
-        Room room;
-         float a=0;
-         float c=0;
-         float h=0;
-         float l=0;
-        for (int i = 0; i < rooms.size(); i++) {
-			room=rooms.get(i);
-			a+=room.getArea();
-			c+=room.getCube();
-			h+=room.getHeating();
-			l+=room.getLightPower();
-        }
-        this.area = a;
-        this.cube = c;
-        this.heating = h;
-        this.lightPower = l;
-        
 
+    public Level(int id, String name){
+        super(id, name, "Level");
     }
-    /**
-     * <p>Funkcja dodajaca pomieszczenie do listy pomieszczen. 
-     * Powieksza wartosc parametrow opisujach poziom o wartosci parametrow dodanego pomieszczenia</p>
-     */
+
+    @Override
     public void addRoom(Room newRoom){
-        rooms.add(newRoom);
-        this.area = this.area+newRoom.getArea();
-        this.cube = this.cube+newRoom.getCube();
-        this.heating = this.heating+newRoom.getHeating();
-        this.lightPower = this.lightPower+newRoom.getLightPower();
-        this.rent = this.rent+newRoom.getRent();
+        super.addLocation(newRoom);
+    }
+    
+    @Override
+    public boolean isLevel(){
+        return true;
     }
 
     public ArrayList<Room> getRooms(){
+        ArrayList<Room> rooms = new ArrayList<Room>();
+        ArrayList<Location> locations = this.getLocations();
+
+        for(Location l:locations){
+            rooms.add((Room) l);
+        }
         return rooms;
     }
-    
-    public float getHeating() {
-        return heating;
-    }
-    
-    public float getCube() {
-    	return cube;
-    }
-    
-    public float getArea() {
-    	return area;
-    }
-    
-    public float getLightPower() {
-    	return lightPower;
-    }
-    
-    public float getRent() {
-    	return rent;
-    }
-    public void setArea(float area){
-        this.area = area;
-    }
-    public void setCube(float cube){
-        this.cube = cube;
-    }
-    public void setHeating(float heating){
-        this.heating = heating;
-    }
-    public void setLightPower(float lightPower){
-        this.lightPower = lightPower;
-    }
-    
 }

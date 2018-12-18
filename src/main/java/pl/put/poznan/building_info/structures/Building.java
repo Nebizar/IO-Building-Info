@@ -4,16 +4,8 @@ package pl.put.poznan.building_info.structures;
  */
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Building extends Location{
-	
-	  /** <p>Podstawowe cechy obiektu:</p>
-	   * @param levels - lista poziomow znajdujacych sie w budynku
-	   */
-    
-    private ArrayList<Level> levels = new ArrayList<Level>();
-
+public class Building extends LocationGroup{
     /**
      * <p>Konstruktor tworzacy budynek wraz z podstawowymi informacjami o nim</p>
      *
@@ -22,7 +14,7 @@ public class Building extends Location{
      * dziedziczone z klasy location
      */
     public Building(int id, String name){
-        super(id, name);
+        super(id, name, "Building");
     }
     
     /**
@@ -30,12 +22,25 @@ public class Building extends Location{
      *
      * @param newLevel- obiekt dodawany do listy levels
      */
+    @Override
     public void addLevel(Level newLevel){
-        levels.add(newLevel);
+        super.addLocation(newLevel);
+    }
+
+    @Override
+    public boolean isBuilding(){
+        return true;
     }
 
     public ArrayList<Level> getLevels(){
+        ArrayList<Level> levels = new ArrayList<Level>();
+        ArrayList<Location> locations = this.getLocations();
+
+        for(Location l:locations){
+            levels.add((Level) l);
+        }
         return levels;
     }
-    
+
+
 }

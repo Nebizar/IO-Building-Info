@@ -39,7 +39,7 @@ http://localhost:8080/nazwa-operacji
 
 
 
-Każdą operacje dotyczącą jednego obiektu należy zakończyć **ID oczekiwanego obiektu**.
+Każdą operacje dotyczącą jednego obiektu należy zakończyć **ID oczekiwanego obiektu**. Operacje zwracające listę pokoi o polach przekraczających pewien próg wymagają dodatkowo podania **progu, który należy przekroczyć**.
 
 Dostępne operacje:
 
@@ -60,6 +60,9 @@ Dostępne operacje:
 * **getRoomRent** - Oblicza i wyświetla cenę wynajmu pomieszczenia,
 * **getLevelRent** - Oblicza i wyświetla cenę wynajmu całego poziomu,
 * **getBuildingRent** - Oblicza i wyświetla cenę wynajmu całego budynku,
+* **buildingRentOverThreshold** - zwraca listę pokoi w budynku, których czynsz jest wyższy od podanego progu,
+* **buildingPowerOverThreshold** - zwraca listę pokoi w budynku, których zużycie energii na metr kwadratowy jest wyższe od podanego progu,
+* **buildingHeatingOverThreshold** - zwraca listę pokoi w budynku, których zużycie energii cieplnej na metr sześcienny jest wyższe od podanego progu.
 
 Przyklady:
 

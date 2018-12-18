@@ -460,7 +460,6 @@ public class BuildingOperations{
     
     public ArrayList<Location> getRoomsWithRentThreshold(Integer id, float threshold){
         Location found = locations.getEntityByID(id);
-        Value value;
         ArrayList<Location> roomsWithRent=new ArrayList<>();
         if(found == null){
         	roomsWithRent.add(new Building(id,"ERROR! Can't find ID"));		
@@ -481,5 +480,31 @@ public class BuildingOperations{
             }
         }
         return roomsWithRent;
+    }
+    
+    //Add all rooms with power per square meter that is greater than the threshold passed as a parameter in a building with the ID passed as a parameter
+    
+    public ArrayList<Location> getRoomsWithPowerThreshold(Integer id, float threshold){
+        Location found = locations.getEntityByID(id);
+        ArrayList<Location> roomsWithPower=new ArrayList<>();
+        if(found == null){
+        	roomsWithPower.add(new Building(id,"ERROR! Can't find ID"));		
+        }else{
+            if(found.isBuilding()){
+            	Building building=(Building) found;
+                ArrayList<Room> rooms=building.getRooms();
+                for(Room r: rooms) {
+                	if(r.getLightPower()>threshold) {
+                		roomsWithPower.add(r);
+                	}
+                }
+                if(roomsWithPower.size()==0) {
+                	roomsWithPower.add(new Building(id,"There are no rooms with power per square meter over that threshold in the Building with that ID!"));
+                }
+            }else{
+                roomsWithPower.add(new Building(id,"ERROR! That is not a Building ID!"));
+            }
+        }
+        return roomsWithPower;
     }
 }

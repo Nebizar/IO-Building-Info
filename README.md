@@ -1,4 +1,4 @@
-# IO-Building-Info
+﻿# IO-Building-Info
 
 
 Dla administratorów budynków, którzy pragną optymalizować koszty zarządzania budynkami  nasza aplikacja Building Info umożliwi pozyskanie informacji o parametrach budynku na poziomie pomieszczeń, kondygnacji oraz całych budynków. Aplikacja będzie dostępna poprzez GUI a także jako zdalne API dzięki czemu można ją zintegrować z istniejącymi narzędziami.
@@ -131,6 +131,8 @@ Obsługa i zarządzanie zadaniami w zespole - Trello
 * [Trello](https://trello.com/b/81rhAaNb/io-building-info-sprint-1) - SPRINT #1
 
 * [Trello](https://trello.com/b/FNcwC89E/io-building-info-sprint-2) - SPRINT #2
+
+* [Trello](https://trello.com/b/1St28toN/io-building-info-sprint3) - SPRINT #3
 
 ## Autorzy
 

@@ -102,6 +102,17 @@ Z wiersza poleceń:
 
 ```mvn test```
 
+### Uruchamianie testów wydajnościowych
+
+Z wiersza poleceń:
+
+```mvn jmeter:jmeter```
+
+### Uruchamianie wszystkich dostępnych testów
+
+Z wiersza poleceń:
+
+```mvn clean verify```
 
 ## Struktura Danych
 
@@ -114,8 +125,9 @@ Z wiersza poleceń:
 	* area - powierzchnia w m^2
 	* cube - kubatura pomieszczenia w m^3
 	* heating - poziom zużycia energii ogrzewania (float)
-	* light – łączna moc oświetlenia
-* Struktura budynku w JSON np {"levels":[{"rooms":[{"area":16.771454,"cube":86.15964,"heating":193.71202,"lightPower":172.36221,"ID":35,"name":"Room"},{"area":35.63685,"cube":44.08831,"heating":74.20811,"lightPower":297.57465,"ID":36,"name":"Room"}],"ID":30,"name":"Level"}],"name":"Building"}
+	* lightPower – łączna moc oświetlenia
+	* rent - cena wynajmu
+* Struktura budynku w JSON np {"levels":[{"rooms":[{"area":16.771454,"cube":86.15964,"heating":193.71202,"lightPower":172.36221,"rent":524.1692,"ID":35,"name":"Room"},{"area":35.63685,"cube":44.08831,"heating":74.20811,"lightPower":297.57465,"ID":36,"name":"Room"}],"ID":30,"name":"Level"}],"name":"Building"}
 
 
 ## Zbudowane przy użyciu

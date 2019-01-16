@@ -64,7 +64,7 @@ Dostępne operacje:
 * **buildingRentOverThreshold** - zwraca listę pokoi w budynku, których czynsz jest wyższy od podanego progu,
 * **buildingPowerOverThreshold** - zwraca listę pokoi w budynku, których zużycie energii na metr kwadratowy jest wyższe od podanego progu,
 * **buildingHeatingOverThreshold** - zwraca listę pokoi w budynku, których zużycie energii cieplnej na metr sześcienny jest wyższe od podanego progu.
-
+ 
 Przyklady:
 
 Wyświetlenie kubatury budynku o wybranym ID:

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Building Info</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+</head>
+
+<style type="text/css">
+  h1, h2{
+      font-family: Staatliches;
+      width: 100%;
+      text-align: left;
+      font-size: 40px;
+      margin-bottom: 0px;
+      margin-left: 25px;
+  }
+
+  h2{
+    font-size: 16px;
+    margin-top: 0px;
+    font-weight: 100;
+  }
+
+#projectName{
+    height: 15%;
+    width: 50%;
+}
+  #tresc,body{
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+  }
+
+  p{
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 5px;
+    font-size: 22px;
+  }
+
+  #BuildingName{
+      position: absolute;
+      top: 0px;
+      right: 40px;
+  }
+  #BuildingName h2{
+      margin-top: 30px;
+      font-size: 22px;
+      text-align: right;
+  }
+
+  #BuildingName input{
+      background-color:#CCCCCC;
+      border: 2px solid #333333;
+      font-size: 25px;
+      margin-right: -30px;
+  }
+
+  #levels{
+      position: absolute;
+      left: 0px;
+      top: 15%;
+      width: 30%;
+      height: 85%;
+      cursor: pointer;
+  }
+  
+
+  #rooms{
+      position: absolute;
+      top: 15%;
+      left: 30%;
+      width: 70%;
+      height: 85%;
+  }
+  .level,#addNewLevel{
+      width: 100%;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      margin-top: 10px;
+      background-color: #CCCCCC;
+      text-align: center;
+  }
+  .level{
+      position: relative;
+  }
+  #addNewLevel{
+        background-color: #9FD698;
+        margin-top: 10px;
+        cursor: pointer;
+  }
+
+  h3{
+      font-size: 30px;
+      font-family: Staatliches;
+      font-weight: 100;
+      margin: 0px;
+      padding: 0px;
+  }
+
+  input{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 20px;
+  }
+  .room{
+      outline: 2px solid #333333;
+      width: 32%;
+      margin-top: 10px;
+      margin-left: 1%;
+      height: 350px;
+      border-radius: 10px;
+  }
+
+  .room{
+      padding-top: 15px;
+      position: relative;
+      float: left;
+  }
+  .room p, .room input{
+      font-size: 15px;
+  }
+  .room p{
+      float: left;
+      margin-left: 3%;
+      width: 94%;
+  }
+  .room input{
+      float: right;
+      margin-right: 10px;
+  }
+
+  #addNewRoom{
+    width: 32%;
+      margin-top: 10px;
+      margin-left: 1%;
+      height: 350px;
+      float: left;
+      text-align: center;
+      background-color: #9FD698;
+      cursor: pointer;
+      padding-top: 15px;
+  }
+  #addNewRoom h3{
+      margin-top: 100px;
+  }
+
+  #save{
+      position: fixed;
+      right: 0px;
+      bottom: 0px;
+      width: 300px;
+      height: 100px;
+      border-top: 3px solid #333333;
+      border-left: 3px solid #333333;
+      background-color: #9FD698;
+      cursor: pointer;
+  }
+
+  #save h3{
+      text-align: center;
+      margin-top: 30px;
+  }
+
+  .close{
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      font-size: 14px;
+      font-family: Staatliches;
+      font-weight: 100;
+      cursor: pointer;
+  }
+
+  .activeLevel{
+      border: 3px solid #333333;
+  }
+</style>
+
+<body>
+    <div id="projectName">
+        <h1>Building Info</h1>
+        <h2>Add new building</h2>
+    </div>
+
+
+
+<div id="tresc">
+    <div id="BuildingName">
+        <h2>Nazwa budynku</h2>
+        <input type="text" name="name"><br>
+    </div>
+
+    <div id="levels">
+        <div class="level">
+            <p class="close" onclick="removeLevel(event)">Usuń</p>
+            <p>Nazwa poziomu</p>
+            <input type="text" name="name"><br>
+        </div>
+
+        <div id="addNewLevel">
+            <h3>Dodaj nowy poziom</h3>
+        </div>
+    </div>
+    <div id="rooms">
+        <div class="room">
+            <p class="close" onclick="removeRoom(event)">Usuń</p>
+            <p>Nazwa pokoju
+            <input type="text" name="RoomName"></p>
+            <p>Długość
+            <input type="text" name="length"></p>
+            <p>Szerokość
+            <input type="text" name="width"></p>
+            <p>Wysokość
+            <input type="text" name="height"></p>
+            <p>Ogrzewanie
+            <input type="text" name="heating"></p>
+            <p>Moc oświetlenia
+            <input type="text" name="light"></p>
+            <p>Czynsz
+            <input type="text" name="rent"></p>
+        </div>
+        <div id="addNewRoom">
+            <h3>Dodaj nowy pokój</h3>
+        </div>
+    </div>
+
+</div>
+
+<div id="save">
+    <h3>Zapisz zmiany</h3>
+</div>
+
+</body>
+
+
+<script>
+    var levelTeplate = $('.level').clone();
+    $('.level').remove();
+    var roomTeplate = $('.room').clone();
+    $('.room').remove();
+    $('#addNewRoom').hide();
+
+    var levelCount = 0;
+    var activeLevel = null;
+
+    $('#addNewLevel').click(function(){
+        $('#addNewLevel').before(levelTeplate.clone().attr('id','lc'+levelCount).attr('onclick',"levelClick(event, this)"));
+        levelCount++;
+    })
+
+    function levelClick(event, e){
+        activeLevel = $(e).attr('id');
+        $('.level').removeClass('activeLevel');
+        $(e).addClass('activeLevel');
+
+        $('.room').hide();
+        $('.'+activeLevel).show();
+        $('#addNewRoom').show();
+    }
+
+    function removeLevel(e){
+        var idd = $(e.target).parent('.level').attr('id');
+        $('.'+idd).remove();
+        $(e.target).parent('.level').remove();
+        activeLevel = null;
+        $('#addNewRoom').hide();
+        e.stopPropagation();
+    }
+
+    function removeRoom(e){
+        $(e.target).parent('.room').remove();
+        
+    }
+
+    $('#addNewRoom').click(function(){
+        $('#addNewRoom').before(roomTeplate.clone().addClass(activeLevel));
+    })
+
+    $('#save').click(function(){
+
+        var regex = /,$/;
+        var outString = '{"building":{"locations":[],"ID":100,"name":"';
+        var buildingName = $('#BuildingName input').val();
+        if(!buildingName){
+            alert("Nazwa budynku misi być wprowadzona");
+            return;
+        }
+        
+        outString+=buildingName;
+        outString+= '","type":"Building"},"levels":[';
+
+        var res = $('.level').each(function(){
+            outString += '{"level":{"locations":[],"ID":101,"name":"';
+            var levelName = $(this).children('input[name="name"]').val();
+            if(!levelName){
+                alert("Wszystkie nazwy poziomów muszą zostać wprowadzone");
+                return false;
+            }
+            outString += levelName;
+            outString += '","type":"Level"},"rooms":[';
+
+            //ROOMS
+            //{"length":10.0,"width":100.0,"height":2.0,"area":1000.0,"cube":2000.0,"heating":45.0,"lightPower":99.0,"rent":2.0,"ID":103,"name":"r1","type":"Room"},
+
+            var roomClass = $(this).attr('id');
+            var ress = $('.'+roomClass).each(function(){
+                var roomName = $(this).find('input[name="RoomName"]').val();
+                var length = parseFloat($(this).find('input[name="length"]').val());
+                var width = parseFloat($(this).find('input[name="width"]').val());
+                var height = parseFloat($(this).find('input[name="height"]').val());
+                var heating = parseFloat($(this).find('input[name="heating"]').val());
+                var light = parseFloat($(this).find('input[name="light"]').val());
+                var rent = parseFloat($(this).find('input[name="rent"]').val());
+
+                if(!roomName || !length || !width || !height || !heating || !light || !rent){
+                    alert('Wszystkie wartości w polach pokoi muszą zostać uzupełnione');
+                    return false;
+                }
+
+                if(isNaN(length) || isNaN(width) || isNaN(height) || isNaN(heating) || isNaN(light) || isNaN(rent)){
+                    alert('Wartości dłudość, wysokość, szerokość, moc ogrzewania, moc światła i czynsz muszą być numeryczne');
+                    return false;
+                }
+
+                if(length < 0 || width < 0 || height < 0 || heating < 0 || light < 0 || rent < 0){
+                    alert('Wartości muszą być dodatnie');
+                    return false;
+                }
+
+                outString += '{"length":' + length;
+                outString += ',"width":' + width;
+                outString += ',"width":' + width;
+                outString += ',"height":' + height;
+                outString += ',"heating":' + heating;
+                outString += ',"lightPower":' + light;
+                outString += ',"rent":' + rent;
+                outString += ',"ID":' + '100';
+                outString += ',"name":"' + roomName;
+                outString += '","type":"Room"},';
+            })
+
+            if(!ress){
+                return false;
+            }
+
+            
+            outString = outString.replace(regex, '');
+            outString += ']},';
+        })
+
+        if(!res){
+            return false;
+        }
+
+        outString = outString.replace(regex, '');
+
+        outString += ']}';
+
+        console.log(outString);
+        
+    
+        $.ajax('new/', {
+            type: 'post',
+            data: outString,
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function(data) { 
+                console.log('Receive: ' + data); 
+                alert("Poprawnie dodano budynek");
+                location.reload();
+                }
+        });
+
+        
+    })
+</script>
+</html>

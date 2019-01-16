@@ -44,7 +44,8 @@ Każdą operacje dotyczącą jednego obiektu należy zakończyć **ID oczekiwane
 Dostępne operacje:
 
 * **building** - Wyświetla informacje o wszystkich elementach,
-* **building/new/** - Dodaje nowy budynek zgodnie z danymi w formacie JSON
+* **GUI/** - Otwiera GUI które pozwala na wprowadzanie nowych budynków do systemu
+* **GUI/new/** - Dodaje nowy budynek zgodnie z danymi w formacie JSON
 * **getRoomArea** - Wyświetla powierzchnię pokoju,
 * **getLevelArea** - Wyświetla powierzchnię poziomu,
 * **getBuildingArea** - Wyświetla powierzchnię budynku,

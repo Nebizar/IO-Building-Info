@@ -7,10 +7,19 @@ import pl.put.poznan.building_info.logic.BuildingOperations;
 import java.util.Arrays;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Type;
 
 import pl.put.poznan.building_info.structures.Location;
+import pl.put.poznan.building_info.structures.Room;
 import pl.put.poznan.building_info.structures.Building;
+import pl.put.poznan.building_info.structures.BuildingContent;
+import pl.put.poznan.building_info.structures.Level;
+import pl.put.poznan.building_info.structures.LevelContent;
 import pl.put.poznan.building_info.info.Result;
 import pl.put.poznan.building_info.structures.Collection;
 import pl.put.poznan.building_info.structures.Value;
@@ -30,14 +39,42 @@ public class BuildingInfoController {
      param newBuilding JSON format building object
      @return JSON response
      */
-    @RequestMapping(value = "/building/new/", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/GUI/new/", method = RequestMethod.POST, produces = "text/html")
     public String createBuilding(@RequestBody String newBuilding) {
 
+        System.out.println(newBuilding);
         Gson g = new Gson(); 
-        Building newBuildingObj = g.fromJson(newBuilding, Building.class);
-        Result result = transformer.addBuilding(newBuildingObj);
-        g = null;
-        return result.getAsJsonString();
+        BuildingContent newBuildingObj = g.fromJson(newBuilding, BuildingContent.class);
+
+        return transformer.addBuilding(newBuildingObj).getAsJsonString();
+    }
+
+    /**
+     * Open GUI for adding new buildings
+     * @param locationId
+     * @return
+     */
+    @RequestMapping(value = "/GUI/", method = RequestMethod.GET, produces = "text/html")
+    public String GUI(@RequestParam(value = "id", required = false) String locationId) {
+
+        File file = new File("src/main/resources/newBuilding.html");
+        FileInputStream fis;
+        try {
+            fis = new FileInputStream(file);
+            byte[] data = new byte[(int) file.length()];
+            fis.read(data);
+            fis.close();
+            String str = new String(data, "UTF-8");
+            return str;
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "";
+		}catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "";
+        }
     }
 
     /**

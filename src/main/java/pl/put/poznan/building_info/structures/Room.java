@@ -55,6 +55,11 @@ public class Room extends Location{
         return true;
     }
 
+    public void calcParamsAgain(){
+        this.area = length * width;
+        this.cube = this.area * height;
+    }
+
     /**
      * <p>Zwraca zuzycie energii na ogrzewanie pokoju</p>
      */

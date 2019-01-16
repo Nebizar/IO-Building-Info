@@ -4,8 +4,11 @@ import java.util.List;
 import pl.put.poznan.building_info.structures.Location;
 import pl.put.poznan.building_info.structures.Room;
 import pl.put.poznan.building_info.structures.Building;
+import pl.put.poznan.building_info.structures.BuildingContent;
 import pl.put.poznan.building_info.structures.Level;
 import pl.put.poznan.building_info.structures.Collection;
+import pl.put.poznan.building_info.structures.BuildingContent;
+import pl.put.poznan.building_info.structures.LevelContent;
 import pl.put.poznan.building_info.structures.Value;
 import pl.put.poznan.building_info.structures.allLocations;
 import pl.put.poznan.building_info.info.Result;
@@ -77,19 +80,24 @@ public class BuildingOperations{
 
 //Change new building elements ID's and add building to existing data structures
 
-    public Result addBuilding(Building newBuilding){
+    public Result addBuilding(BuildingContent newBuildingContent){
         int baseID = currentID;
 
+        Building newBuilding = newBuildingContent.getBiuiding();
         newBuilding.setID(currentID);
         currentID ++;
 
-        for (Level level : newBuilding.getLevels()) {
+        for (LevelContent levelContent : newBuildingContent.getLevelContent()) {
+            Level level = levelContent.getLevel();
             level.setID(currentID);
             currentID ++;
+            newBuilding.addLevel(level);
 
-            for (Room room : level.getRooms()) {
+            for (Room room : levelContent.getRooms()) {
                 room.setID(currentID);
+                room.calcParamsAgain();
                 currentID ++;   
+                level.addRoom(room);
             }
         }
 
